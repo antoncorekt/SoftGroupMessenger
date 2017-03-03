@@ -1,7 +1,9 @@
-package com.softgroup.common.router.api;
+package com.softgroup.common.router.factory;
 
 import com.softgroup.common.protocol.Request;
+import com.softgroup.common.router.api.Handler;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,9 +13,11 @@ import java.util.Map;
  */
 public abstract class AbstractHandlerFactory<T extends Handler> {
 
+
     private Map<String,T> handlerMap = new HashMap<>();
 
-    public AbstractHandlerFactory(){
+    @PostConstruct
+    public void init(){
         for (T handler: getHandler()){
             handlerMap.put(handler.getName(),handler);
         }

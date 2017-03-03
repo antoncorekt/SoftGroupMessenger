@@ -7,7 +7,6 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
-import com.softgroup.common.router.api.RequestHandler;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

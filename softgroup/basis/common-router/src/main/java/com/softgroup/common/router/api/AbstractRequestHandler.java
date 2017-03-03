@@ -1,16 +1,21 @@
 package com.softgroup.common.router.api;
 
 
+import com.softgroup.common.datamapper.DataMapper;
 import com.softgroup.common.datamapper.JacksonDataMapper;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.RequestData;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseData;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
 public abstract class AbstractRequestHandler<T extends RequestData, R extends ResponseData> implements RequestHandler {
+
+	@Autowired
+	private DataMapper dataMapper;
 
 	@Override
 	public String getName() {
@@ -24,7 +29,7 @@ public abstract class AbstractRequestHandler<T extends RequestData, R extends Re
 
 		Class<T> cl = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
-		JacksonDataMapper dataMapper = new JacksonDataMapper();
+
 		T t = dataMapper.convert((Map<String, Object>) msg.getData(),cl);
 
 		request.setData(t);

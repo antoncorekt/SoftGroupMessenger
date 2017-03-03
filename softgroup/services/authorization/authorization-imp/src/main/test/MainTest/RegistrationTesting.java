@@ -7,23 +7,41 @@ import com.softgroup.authorization.impl.handler.RegistrationRequestHandler;
 import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import org.junit.runner.RunWith;
 import org.omg.PortableInterceptor.ACTIVE;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.UUID;
 
 /**
  * Created by anton on 28.02.17.
  */
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration
 public class RegistrationTesting {
 
-    @Autowired
-    private RegistrationRequestHandler registrationRequestHandler = new RegistrationRequestHandler();   // why spring doesn't work??????
+    @Configuration
+    public static class TestCfg{
 
+        @Bean
+        public RegistrationRequestHandler registrationRequestHandler()
+        {
+            return new RegistrationRequestHandler();
+        }
+    }
+
+    @Autowired
+    private RegistrationRequestHandler registrationRequestHandler;
     @org.junit.Test
     public void test1(){
         Request<RegisterRequest> request = new Request<>();
 
+        // Handler handler = Mockito.mock(Handler.class);
 
         ActionHeader actionHeader = new ActionHeader();
         actionHeader.setUuid(UUID.randomUUID().toString());
@@ -40,10 +58,8 @@ public class RegistrationTesting {
 
         Response<RegisterResponse> res = registrationRequestHandler.handleWork(request);
 
-       // System.out.println(res.getData().getRegistrationRequestUuid());
+        System.out.println(res.getData().getRegistrationRequestUuid());
 
         // todo print testing data
-
-
     }
 }

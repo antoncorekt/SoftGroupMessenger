@@ -6,10 +6,12 @@ import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.router.api.AbstractRequestHandler;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by anton on 28.02.17.
  */
+@Component
 public class SmsConfirmHandler extends AbstractRequestHandler<SmsConfirmRequest, SmsConfirmResponse> implements AuthorizationRequestHandler {
 
     @Override
