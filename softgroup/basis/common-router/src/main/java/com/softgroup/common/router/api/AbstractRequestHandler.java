@@ -27,7 +27,7 @@ public abstract class AbstractRequestHandler<T extends RequestData, R extends Re
 		Request<T> request = new Request<>();
 		request.setHeader(msg.getHeader());
 
-		Class<T> cl = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+		final Class<T> cl = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
 
 		T t = dataMapper.convert((Map<String, Object>) msg.getData(),cl);

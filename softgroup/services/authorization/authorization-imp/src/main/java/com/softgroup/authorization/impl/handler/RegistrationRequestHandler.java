@@ -22,7 +22,6 @@ public class RegistrationRequestHandler extends AbstractRequestHandler<RegisterR
         return "register";
     }
 
-
     @Override
     public Response<RegisterResponse> handleWork(Request<RegisterRequest> msg) {
 

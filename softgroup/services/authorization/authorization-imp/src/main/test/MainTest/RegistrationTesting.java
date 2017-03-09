@@ -7,9 +7,15 @@ import com.softgroup.authorization.impl.handler.RegistrationRequestHandler;
 import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.omg.PortableInterceptor.ACTIVE;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,22 +27,27 @@ import java.util.UUID;
  * Created by anton on 28.02.17.
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+@RunWith(MockitoJUnitRunner.class)
 public class RegistrationTesting {
 
     @Configuration
     public static class TestCfg{
 
-        @Bean
+        @Bean(name = "lol")
         public RegistrationRequestHandler registrationRequestHandler()
         {
             return new RegistrationRequestHandler();
         }
     }
 
-    @Autowired
+    @InjectMocks
     private RegistrationRequestHandler registrationRequestHandler;
+
+    @Before
+    public void init(){
+
+    }
+
     @org.junit.Test
     public void test1(){
         Request<RegisterRequest> request = new Request<>();
@@ -58,8 +69,13 @@ public class RegistrationTesting {
 
         Response<RegisterResponse> res = registrationRequestHandler.handleWork(request);
 
-        System.out.println(res.getData().getRegistrationRequestUuid());
-
-        // todo print testing data
+        
     }
+
+    @Test
+    public void testGetName(){
+        assert 2==2;
+    }
+
+
 }

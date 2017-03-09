@@ -35,6 +35,6 @@ public class MainController {
 
     @RequestMapping(path = "/test")
     public String testRest(){
-        return "Hello word";
+        return "Testing work!";
     }
 }
