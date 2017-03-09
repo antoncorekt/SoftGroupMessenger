@@ -1,12 +1,21 @@
 package com.softgroup.test.common.router;
 
+<<<<<<< HEAD
 
 import com.softgroup.common.datamapper.JacksonDataMapper;
 import com.softgroup.common.protocol.Request;
+=======
+import com.softgroup.common.datamapper.DataMapper;
+import com.softgroup.common.datamapper.JacksonDataMapper;
+>>>>>>> 33a9831... add dao packedge
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+<<<<<<< HEAD
+=======
+import org.mockito.InjectMocks;
+>>>>>>> 33a9831... add dao packedge
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -33,6 +42,10 @@ public class AbstractRequestHandlerTest {
     public void init(){
         abstractRequestHandler = Mockito.mock(AbstractRequestHandler.class, Mockito.CALLS_REAL_METHODS);
 
+<<<<<<< HEAD
+=======
+        when(abstractRequestHandler.getName()).thenReturn("lol");
+>>>>>>> 33a9831... add dao packedge
         dataMapper = Mockito.mock(JacksonDataMapper.class);
     }
 
@@ -40,11 +53,18 @@ public class AbstractRequestHandlerTest {
     @Test
     public void testHandle(){
 
+<<<<<<< HEAD
+=======
+
+        assertThat(abstractRequestHandler.getName(), nullValue());
+        assertThat(2, is(2));
+>>>>>>> 33a9831... add dao packedge
     }
 
     @Test
     public void testHandleWork(){
 
+<<<<<<< HEAD
         assertThat(abstractRequestHandler.handleWork(new Request()),nullValue());
         assertThat(abstractRequestHandler.handleWork(null),nullValue());
 
@@ -58,4 +78,13 @@ public class AbstractRequestHandlerTest {
         assertThat(abstractRequestHandler.getName(), is("name"));
     }
 
+=======
+    }
+
+    public void testGetName(){
+
+    }
+
+
+>>>>>>> 33a9831... add dao packedge
 }

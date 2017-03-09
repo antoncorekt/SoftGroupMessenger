@@ -13,6 +13,7 @@
 
     <artifactId>common-dao-impl</artifactId>
 
+<<<<<<< HEAD
     <dependencies>
 
         <dependency>
@@ -22,6 +23,8 @@
         </dependency>
 
     </dependencies>
+=======
+>>>>>>> 33a9831... add dao packedge
 
     
 </project>
