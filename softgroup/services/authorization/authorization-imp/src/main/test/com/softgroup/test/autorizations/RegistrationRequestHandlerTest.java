@@ -1,6 +1,5 @@
-package MainTest;
+package com.softgroup.test.autorizations;
 
-import com.fasterxml.jackson.databind.util.JSONWrappedObject;
 import com.softgroup.authorization.api.message.RegisterRequest;
 import com.softgroup.authorization.api.message.RegisterResponse;
 import com.softgroup.authorization.impl.handler.RegistrationRequestHandler;
@@ -11,49 +10,27 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.junit.MockitoJUnit;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.omg.PortableInterceptor.ACTIVE;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.UUID;
+import static org.hamcrest.CoreMatchers.*;
+
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by anton on 28.02.17.
  */
 
 @RunWith(MockitoJUnitRunner.class)
-public class RegistrationTesting {
-
-    @Configuration
-    public static class TestCfg{
-
-        @Bean(name = "lol")
-        public RegistrationRequestHandler registrationRequestHandler()
-        {
-            return new RegistrationRequestHandler();
-        }
-    }
+public class RegistrationRequestHandlerTest {
 
     @InjectMocks
     private RegistrationRequestHandler registrationRequestHandler;
 
+    private Request<RegisterRequest> request = new Request<>();
+
     @Before
     public void init(){
-
-    }
-
-    @org.junit.Test
-    public void test1(){
-        Request<RegisterRequest> request = new Request<>();
-
-        // Handler handler = Mockito.mock(Handler.class);
-
         ActionHeader actionHeader = new ActionHeader();
         actionHeader.setUuid(UUID.randomUUID().toString());
         actionHeader.setType("authorization");
@@ -66,15 +43,29 @@ public class RegistrationTesting {
 
         request.setHeader(actionHeader);
         request.setData(registerRequest);
+    }
 
+    @org.junit.Test
+    public void handleWorkTest(){
         Response<RegisterResponse> res = registrationRequestHandler.handleWork(request);
 
-        
+        assertThat(res.getStatus().getCode(),is(200));
+        assertThat(res.getStatus().getMessage(),is("OK"));
+        assertThat(res.getHeader().getType(),is("authorization"));
+        assertThat(res.getHeader().getCommand(),is("register"));
+        assertThat(res.getData().getAuthCode(),any(String.class));
+        assertThat(res.getData().getRegistrationRequestUuid(),any(String.class));
+        assertThat(res.getData().getRegistrationTimeoutSec(),is(10));
+
+        assertThat(registrationRequestHandler.handleWork(null).getStatus().getCode(),is(404));
     }
+
+
 
     @Test
     public void testGetName(){
-        assert 2==2;
+
+        assertThat(registrationRequestHandler.getName(), is("register"));
     }
 
 

@@ -24,6 +24,7 @@ public class RegistrationRequestHandler extends AbstractRequestHandler<RegisterR
 
     @Override
     public Response<RegisterResponse> handleWork(Request<RegisterRequest> msg) {
+        Response<RegisterResponse> res = new Response<>();
 
         RegisterResponse registerResponse = new RegisterResponse();
         registerResponse.setAuthCode(UUID.randomUUID().toString());
@@ -31,10 +32,16 @@ public class RegistrationRequestHandler extends AbstractRequestHandler<RegisterR
         registerResponse.setRegistrationTimeoutSec(10);
 
         ResponseStatus responseStatus = new ResponseStatus();
+        if (msg==null){
+            responseStatus.setCode(404);
+            responseStatus.setMessage("msg is null");
+            res.setStatus(responseStatus);
+            return res;
+        }
         responseStatus.setCode(200);
         responseStatus.setMessage("OK");
 
-        Response<RegisterResponse> res = new Response<>();
+
         res.setHeader(msg.getHeader());
         res.setData(registerResponse);
         res.setStatus(responseStatus);

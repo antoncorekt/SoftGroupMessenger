@@ -2,7 +2,6 @@ package com.softgroup.common.router.api;
 
 
 import com.softgroup.common.datamapper.DataMapper;
-import com.softgroup.common.datamapper.JacksonDataMapper;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.RequestData;
 import com.softgroup.common.protocol.Response;
@@ -28,7 +27,6 @@ public abstract class AbstractRequestHandler<T extends RequestData, R extends Re
 		request.setHeader(msg.getHeader());
 
 		final Class<T> cl = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-
 
 		T t = dataMapper.convert((Map<String, Object>) msg.getData(),cl);
 

@@ -1,12 +1,12 @@
 package com.softgroup.test.common.router;
 
-import com.softgroup.common.datamapper.DataMapper;
+
 import com.softgroup.common.datamapper.JacksonDataMapper;
+import com.softgroup.common.protocol.Request;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -33,7 +33,6 @@ public class AbstractRequestHandlerTest {
     public void init(){
         abstractRequestHandler = Mockito.mock(AbstractRequestHandler.class, Mockito.CALLS_REAL_METHODS);
 
-        when(abstractRequestHandler.getName()).thenReturn("lol");
         dataMapper = Mockito.mock(JacksonDataMapper.class);
     }
 
@@ -41,19 +40,22 @@ public class AbstractRequestHandlerTest {
     @Test
     public void testHandle(){
 
-
-        assertThat(abstractRequestHandler.getName(), nullValue());
-        assertThat(2, is(2));
     }
 
     @Test
     public void testHandleWork(){
 
+        assertThat(abstractRequestHandler.handleWork(new Request()),nullValue());
+        assertThat(abstractRequestHandler.handleWork(null),nullValue());
+
     }
 
+    @Test
     public void testGetName(){
+        assertThat(abstractRequestHandler.getName(), nullValue());
 
+        when(abstractRequestHandler.getName()).thenReturn("name");
+        assertThat(abstractRequestHandler.getName(), is("name"));
     }
-
 
 }
