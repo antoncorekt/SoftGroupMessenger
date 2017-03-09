@@ -10,7 +10,6 @@
         <version>0.0.1</version>
     </parent>
 
-
     <artifactId>common-dao-impl</artifactId>
 
     <dependencies>
