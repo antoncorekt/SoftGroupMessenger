@@ -13,7 +13,7 @@
 
     <artifactId>rest</artifactId>
 
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <!-- todo при war mvn clean install обваливается тест для rest пакета -->
 
     

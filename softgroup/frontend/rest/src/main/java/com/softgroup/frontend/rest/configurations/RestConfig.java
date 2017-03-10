@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
  * Created by anton on 03.03.17.
  */
 @Configuration
-@ComponentScan("com.softgroup.frontend")
+@ComponentScan("com.softgroup.frontend.rest")
 @Import({DataMapperAppCfg.class, RouterConfig.class, AuthConfig.class})
 public class RestConfig {
 }

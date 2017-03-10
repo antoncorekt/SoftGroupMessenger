@@ -13,8 +13,9 @@ import java.util.List;
 @Component
 public class MainHandlerFactory extends AbstractHandlerFactory<CommonRouterHandler> {
 
+
     @Autowired
-    private List<CommonRouterHandler> commonRouterHandlerList;
+    private List<CommonRouterHandler> commonRouterHandlerList; // todo "move to abstract class" mean move this to AbstractHandlerFactory?
 
     @Override
     protected List<CommonRouterHandler> getHandler() {

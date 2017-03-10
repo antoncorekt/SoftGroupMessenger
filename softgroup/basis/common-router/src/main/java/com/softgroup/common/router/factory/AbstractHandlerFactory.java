@@ -1,7 +1,9 @@
 package com.softgroup.common.router.factory;
 
 import com.softgroup.common.protocol.Request;
+import com.softgroup.common.router.api.CommonRouterHandler;
 import com.softgroup.common.router.api.Handler;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -12,6 +14,7 @@ import java.util.Map;
  * Created by anton on 28.02.17.
  */
 public abstract class AbstractHandlerFactory<T extends Handler> {
+
 
 
     private Map<String,T> handlerMap = new HashMap<>();
