@@ -1,7 +1,6 @@
 package com.softgroup.common.dao.api.entities;
 
 //import org.springframework.data.annotation.Id;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "profiles")
-public class ProfileEntity implements Serializable {
+public class ProfileEntity implements IEntity {
     private static final long serialVersionUID = -4280254323092119941L;
 
     @Id
