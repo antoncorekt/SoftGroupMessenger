@@ -15,4 +15,5 @@ public class RoutedAction<T extends Serializable> extends Action<T> {
 	public void setRoutedData(RoutedData routedData) {
 		this.routedData = routedData;
 	}
+
 }
