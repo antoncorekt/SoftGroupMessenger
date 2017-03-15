@@ -25,6 +25,37 @@ public abstract class BaseCRUDService<T extends IEntity, V extends IRepository<T
         return repository.save(entities);
     }
 
+    public void delete(K id) {
+        repository.delete(id);
+    }
+
+    public void delete(T entity) {
+        repository.delete(entity);
+    }
+
+    public void delete(Iterable<T> entities) {
+        repository.delete(entities);
+    }
+
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+    public Iterable<T> findAll() {
+        return repository.findAll();
+    }
+
+    public void findAll(Iterable<K> ids) {
+        repository.findAll(ids);
+    }
+
+    public T findOne(K id) {
+        return repository.findOne(id);
+    }
+
+    public void exists(K id) {
+        repository.exists(id);
+    }
 
 
 }
