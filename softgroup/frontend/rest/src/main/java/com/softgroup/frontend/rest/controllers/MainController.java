@@ -29,12 +29,10 @@ public class MainController {
     private MainRouter mainRouter;
 
     @Autowired
-    private DataMapper jacksonDataMapper;
+    private ServiceToken serviceToken;
 
     @RequestMapping(path = "/main")
     public Response<?> getMessage(@RequestBody Request<?> request){
-
-        // todo if request==null ?
 
         return mainRouter.handle(request);
     }

@@ -1,15 +1,11 @@
 package com.softgroup.common.token.impl.test;
 
-import com.softgroup.common.dao.impl.configurations.DaoImplAppCfg;
 import com.softgroup.common.token.impl.configurations.TokenCfg;
-import com.softgroup.common.token.impl.handlerimpl.TokenHandler;
+import com.softgroup.common.token.impl.handlerimpl.ServiceToken;
 import org.jose4j.jwt.JwtClaims;
-import org.jose4j.keys.AesKey;
-import org.jose4j.lang.ByteUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -21,22 +17,21 @@ import static org.hamcrest.CoreMatchers.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TokenCfg.class})
-public class TokenHandlerTest {
+public class ServiceTokenTest {
 
     @Autowired
-    private TokenHandler tokenHandler;
+    private ServiceToken serviceToken;
 
     @Test
     public void createDeviceTokenTest(){
 
         try {
-            String s = tokenHandler.createDeviceToken("testID", "testDevice", 123456L);
+            String s = serviceToken.createDeviceToken("testID", "testDevice");
 
-            JwtClaims res = tokenHandler.getClaimsFromToken(s);
+            JwtClaims res = serviceToken.getClaimsFromToken(s);
 
             assertThat(res.getClaimsMap().get("userID"), is("testID" ));
             assertThat(res.getClaimsMap().get("deviceID"), is("testDevice" ));
-            assertThat(res.getClaimsMap().get("localeCode"), is(123456L ));
         }
         catch (Exception e){
             System.out.println(e.toString());

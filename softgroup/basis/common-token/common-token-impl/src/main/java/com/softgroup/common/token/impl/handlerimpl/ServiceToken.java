@@ -3,6 +3,7 @@ package com.softgroup.common.token.impl.handlerimpl;
 import com.softgroup.common.dao.api.entities.TokenEntity;
 import com.softgroup.common.dao.impl.service.TokenService;
 import com.softgroup.common.token.api.IToken;
+import com.softgroup.common.token.api.TokenExceptions;
 import org.jose4j.jwe.ContentEncryptionAlgorithmIdentifiers;
 import org.jose4j.jwe.JsonWebEncryption;
 import org.jose4j.jwe.KeyManagementAlgorithmIdentifiers;
@@ -17,38 +18,50 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class TokenHandler implements IToken {
+public class ServiceToken implements IToken {
 
     private AesKey key = new AesKey(ByteUtil.randomBytes(16));
 
-    @Autowired
-    private TokenService tokenService;
-
+    private static final String TOKEN_DEVICE = "deviceToken";
+    private static final String TOKEN_SESSION = "temporaryToken";
 
     @Override
-    public String createDeviceToken(String userId, String deviceId, Long locale) throws Exception {
+    public String createDeviceToken(String userId, String deviceId) throws TokenExceptions {
 
         try {
             JwtClaims claims = new JwtClaims();
             claims.setIssuedAtToNow();
             claims.setClaim("userID", userId);
             claims.setClaim("deviceID", deviceId);
-            claims.setClaim("localeCode", locale);
+            claims.setClaim("type", TOKEN_DEVICE);
 
             TokenEntity tokenEntity = new TokenEntity();
             tokenEntity.setId(userId);
             tokenEntity.setDeviceID(deviceId);
-            tokenEntity.setCreationsTime(locale);
 
-            //tokenService.save(new TokenEntity(phoneNumber, deviceId, claims.getIssuedAt()));
-            tokenService.save(tokenEntity);
+
             return encrypt(claims);
         } catch (Exception e) {
-            throw new Exception("Error encrypt " + e.toString());
+            throw new TokenExceptions("Error token " + e.toString());
         }
 
     }
 
+    @Override
+    public String createSessionToken(String userId, String deviceId) throws TokenExceptions {
+        try {
+            JwtClaims claims = new JwtClaims();
+            claims.setIssuedAtToNow();
+            claims.setClaim("userID", userId);
+            claims.setClaim("deviceID", deviceId);
+            claims.setClaim("type", TOKEN_SESSION);
+            claims.setExpirationTimeMinutesInTheFuture(15);
+
+            return encrypt(claims);
+        } catch (Exception e) {
+            throw new TokenExceptions("Error token " + e.toString());
+        }
+    }
 
 
     private String encrypt(JwtClaims claims) throws Exception{
@@ -57,7 +70,7 @@ public class TokenHandler implements IToken {
             encryption.setPayload(claims.toJson());
             return encryption.getCompactSerialization();
         } catch (Exception e) {
-            throw new Exception("Error encrypt " + e.toString());
+            throw new TokenExceptions("Error token " + e.toString());
         }
 
     }
@@ -76,7 +89,7 @@ public class TokenHandler implements IToken {
             encryption.setCompactSerialization(token);
             return JwtClaims.parse(encryption.getPayload());
         } catch (Exception e) {
-            throw new Exception("Error encrypt " + e.toString());
+            throw new TokenExceptions("Error token " + e.toString());
         }
     }
 }
