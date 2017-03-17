@@ -6,7 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
+import java.time.Instant;
+import java.util.UUID;
+
 
 /**
  * Created by anton on 11.03.17.
@@ -35,9 +37,27 @@ public class ProfileEntity implements IEntity {
     @Column(name = "status")
     private String status;
 
-    @Column(name = "avatar_uri")
-    private String avatarUri;
 
+    public ProfileEntity() {
+        this.id = UUID.randomUUID().toString();
+        createDateTime = updateDateTime = Instant.now().getEpochSecond();
+        this.status = "not active";
+    }
+
+    public ProfileEntity(String name) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        createDateTime = updateDateTime = Instant.now().getEpochSecond();
+        this.status = "not active";
+    }
+
+    public ProfileEntity(String phoneNumber, String name) {
+        this.id = UUID.randomUUID().toString();
+        this.phoneNumber = phoneNumber;
+        this.name = name;
+        createDateTime = updateDateTime = Instant.now().getEpochSecond();
+        this.status = "not active";
+    }
 
     public String getId() {
         return id;
@@ -45,6 +65,7 @@ public class ProfileEntity implements IEntity {
 
     public void setId(String id) {
         this.id = id;
+        updateDateTime = Instant.now().getEpochSecond();
     }
 
     public String getPhoneNumber() {
@@ -53,6 +74,7 @@ public class ProfileEntity implements IEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        updateDateTime = Instant.now().getEpochSecond();
     }
 
     public Long getCreateDateTime() {
@@ -61,6 +83,7 @@ public class ProfileEntity implements IEntity {
 
     public void setCreateDateTime(Long createDateTime) {
         this.createDateTime = createDateTime;
+        updateDateTime = Instant.now().getEpochSecond();
     }
 
     public Long getUpdateDateTime() {
@@ -69,6 +92,7 @@ public class ProfileEntity implements IEntity {
 
     public void setUpdateDateTime(Long updateDateTime) {
         this.updateDateTime = updateDateTime;
+        updateDateTime = Instant.now().getEpochSecond();
     }
 
     public String getName() {
@@ -77,6 +101,7 @@ public class ProfileEntity implements IEntity {
 
     public void setName(String name) {
         this.name = name;
+        updateDateTime = Instant.now().getEpochSecond();
     }
 
     public String getStatus() {
@@ -85,14 +110,7 @@ public class ProfileEntity implements IEntity {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getAvatarUri() {
-        return avatarUri;
-    }
-
-    public void setAvatarUri(String avatarUri) {
-        this.avatarUri = avatarUri;
+        updateDateTime = Instant.now().getEpochSecond();
     }
 
 
@@ -103,24 +121,24 @@ public class ProfileEntity implements IEntity {
 
         ProfileEntity that = (ProfileEntity) o;
 
-        if (!id.equals(that.id)) return false;
-        if (!phoneNumber.equals(that.phoneNumber)) return false;
-        if (!createDateTime.equals(that.createDateTime)) return false;
-        if (!updateDateTime.equals(that.updateDateTime)) return false;
-        if (!name.equals(that.name)) return false;
-        if (!status.equals(that.status)) return false;
-        return avatarUri.equals(that.avatarUri);
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
+        if (createDateTime != null ? !createDateTime.equals(that.createDateTime) : that.createDateTime != null)
+            return false;
+        if (updateDateTime != null ? !updateDateTime.equals(that.updateDateTime) : that.updateDateTime != null)
+            return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        return status != null ? status.equals(that.status) : that.status == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + phoneNumber.hashCode();
-        result = 31 * result + createDateTime.hashCode();
-        result = 31 * result + updateDateTime.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + status.hashCode();
-        result = 31 * result + avatarUri.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
+        result = 31 * result + (createDateTime != null ? createDateTime.hashCode() : 0);
+        result = 31 * result + (updateDateTime != null ? updateDateTime.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }
 }

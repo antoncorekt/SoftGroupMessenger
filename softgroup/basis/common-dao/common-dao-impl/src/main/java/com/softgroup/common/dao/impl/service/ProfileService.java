@@ -16,4 +16,8 @@ public class ProfileService extends BaseCRUDService<ProfileEntity, ProfileReposi
         return getRepository().findByName(name);
     }
 
+    public List<ProfileEntity> findByStatus(String status){
+        return getRepository().findByStatus(status);
+    }
+
 }

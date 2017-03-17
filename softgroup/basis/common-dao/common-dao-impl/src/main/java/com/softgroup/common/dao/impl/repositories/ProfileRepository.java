@@ -19,6 +19,5 @@ public interface ProfileRepository extends IRepository<ProfileEntity, String>{
 
     List<ProfileEntity> findByName(String s);
 
-    @Query("select p from ProfileEntity p where p.name = :name")
-    List<ProfileEntity> findByNameQuery(@Param("name") String s);
+    List<ProfileEntity> findByStatus(String s);
 }

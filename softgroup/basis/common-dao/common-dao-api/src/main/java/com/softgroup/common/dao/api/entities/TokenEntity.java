@@ -24,6 +24,11 @@ public class TokenEntity implements IEntity {
     @Column(name = "creations_time")
     private Long creationsTime;
 
+    @Column(name = "user_id")
+    private Long userID;
+
+
+
     public String getId() {
         return id;
     }
@@ -48,6 +53,14 @@ public class TokenEntity implements IEntity {
         this.creationsTime = creationsTime;
     }
 
+    public Long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,7 +70,9 @@ public class TokenEntity implements IEntity {
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (deviceID != null ? !deviceID.equals(that.deviceID) : that.deviceID != null) return false;
-        return creationsTime != null ? creationsTime.equals(that.creationsTime) : that.creationsTime == null;
+        if (creationsTime != null ? !creationsTime.equals(that.creationsTime) : that.creationsTime != null)
+            return false;
+        return userID != null ? userID.equals(that.userID) : that.userID == null;
     }
 
     @Override
@@ -65,6 +80,7 @@ public class TokenEntity implements IEntity {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (deviceID != null ? deviceID.hashCode() : 0);
         result = 31 * result + (creationsTime != null ? creationsTime.hashCode() : 0);
+        result = 31 * result + (userID != null ? userID.hashCode() : 0);
         return result;
     }
 }
