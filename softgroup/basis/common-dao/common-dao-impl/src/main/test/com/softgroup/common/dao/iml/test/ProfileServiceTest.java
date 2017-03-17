@@ -12,6 +12,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+
 /**
  * Created by anton on 15.03.17.
  */
@@ -35,7 +38,7 @@ public class ProfileServiceTest {
     public void findBynameTest(){
         List<ProfileEntity> profileEntity = profileService.findByName("test_name");
 
-
+        assertThat(profileEntity.get(0).getId(), is("id"));
     }
 
 }

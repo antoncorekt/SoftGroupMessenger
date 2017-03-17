@@ -13,7 +13,7 @@ import java.util.List;
 public class ProfileService extends BaseCRUDService<ProfileEntity, ProfileRepository, String> {
 
     public List<ProfileEntity> findByName(String name){
-        return repository.findByName(name);
+        return getRepository().findByName(name);
     }
 
 }

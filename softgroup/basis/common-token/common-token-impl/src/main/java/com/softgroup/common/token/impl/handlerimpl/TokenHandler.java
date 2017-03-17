@@ -31,9 +31,9 @@ public class TokenHandler implements IToken {
         try {
             JwtClaims claims = new JwtClaims();
             claims.setIssuedAtToNow();
-            claims.setClaim("test_user_id", userId);
-            claims.setClaim("test_device_id", deviceId);
-            claims.setClaim("test_locale_code", locale);
+            claims.setClaim("userID", userId);
+            claims.setClaim("deviceID", deviceId);
+            claims.setClaim("localeCode", locale);
 
             TokenEntity tokenEntity = new TokenEntity();
             tokenEntity.setId(userId);
@@ -70,7 +70,7 @@ public class TokenHandler implements IToken {
         return encryption;
     }
 
-    private JwtClaims getClaimsFromToken(String token) throws Exception {
+    public JwtClaims getClaimsFromToken(String token) throws Exception {
         try {
             JsonWebEncryption encryption = getEncryption();
             encryption.setCompactSerialization(token);

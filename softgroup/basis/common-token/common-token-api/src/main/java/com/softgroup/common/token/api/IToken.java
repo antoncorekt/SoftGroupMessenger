@@ -11,4 +11,23 @@ public interface IToken {
     //String getPhoneNumberFromTemporaryToken(String token);
     //RoutedData getRoutingData(String token);
 
+
+    /*  DeviceEntity
+        id
+        profile_id
+        last_auth
+        local_code
+        device_id
+     */
+
+    //         Token
+    //     /          \
+    /* DeviceToken  SessionToken
+         user_id
+         device_id
+         type  --  device or session
+
+             + create_time
+             + expirations
+     */
 }

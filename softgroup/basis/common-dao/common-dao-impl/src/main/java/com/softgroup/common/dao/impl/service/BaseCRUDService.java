@@ -15,7 +15,7 @@ import java.util.Iterator;
 public abstract class BaseCRUDService<T extends IEntity, V extends IRepository<T,K>, K extends Serializable> implements IService{
 
     @Autowired
-    protected V repository;
+    private V repository;
 
     public T save(T entity){
         return repository.save(entity);
@@ -57,5 +57,7 @@ public abstract class BaseCRUDService<T extends IEntity, V extends IRepository<T
         repository.exists(id);
     }
 
-
+    public V getRepository() {
+        return repository;
+    }
 }
