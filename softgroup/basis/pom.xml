@@ -10,7 +10,7 @@
     <artifactId>basis</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>common-dao</module>
+
         <module>common-exceptions</module>
         <module>common-datamapper</module>
         <module>common-router</module>
