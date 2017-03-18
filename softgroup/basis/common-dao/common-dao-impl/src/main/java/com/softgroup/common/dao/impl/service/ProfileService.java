@@ -1,5 +1,6 @@
 package com.softgroup.common.dao.impl.service;
 
+
 import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.impl.repositories.ProfileRepository;
 import org.springframework.stereotype.Component;

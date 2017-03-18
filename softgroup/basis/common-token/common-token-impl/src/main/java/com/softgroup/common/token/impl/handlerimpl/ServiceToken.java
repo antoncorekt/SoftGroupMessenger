@@ -1,7 +1,5 @@
 package com.softgroup.common.token.impl.handlerimpl;
 
-import com.softgroup.common.dao.api.entities.TokenEntity;
-import com.softgroup.common.dao.impl.service.TokenService;
 import com.softgroup.common.token.api.IToken;
 import com.softgroup.common.token.api.TokenExceptions;
 import org.jose4j.jwe.ContentEncryptionAlgorithmIdentifiers;
@@ -34,11 +32,6 @@ public class ServiceToken implements IToken {
             claims.setClaim("userID", userId);
             claims.setClaim("deviceID", deviceId);
             claims.setClaim("type", TOKEN_DEVICE);
-
-            TokenEntity tokenEntity = new TokenEntity();
-            tokenEntity.setId(userId);
-            tokenEntity.setDeviceID(deviceId);
-
 
             return encrypt(claims);
         } catch (Exception e) {

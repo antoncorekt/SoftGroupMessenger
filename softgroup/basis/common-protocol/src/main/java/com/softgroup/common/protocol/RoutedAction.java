@@ -7,6 +7,12 @@ public class RoutedAction<T extends Serializable> extends Action<T> {
 
 	private RoutedData routedData;
 
+	public RoutedAction() {
+	}
+
+	public RoutedAction(ActionHeader header, T data) {
+		super(header, data);
+	}
 
 	public RoutedData getRoutedData() {
 		return routedData;

@@ -1,7 +1,5 @@
 package com.softgroup.common.dao.api.entities;
 
-//import org.springframework.data.annotation.Id;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
