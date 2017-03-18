@@ -7,6 +7,14 @@ public class Response<T extends Serializable> extends RoutedAction<T> {
 
 	private ResponseStatus status;
 
+	public Response() {
+	}
+
+	public Response(ActionHeader header, T data, ResponseStatus status) {
+		super(header, data);
+		this.status = status;
+	}
+
 	public ResponseStatus getStatus() {
 		return status;
 	}
