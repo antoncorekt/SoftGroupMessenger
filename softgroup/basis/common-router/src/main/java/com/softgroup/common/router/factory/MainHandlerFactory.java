@@ -2,28 +2,22 @@ package com.softgroup.common.router.factory;
 
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.router.api.CommonRouterHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 /**
  * Created by anton on 03.03.17.
  */
 @Component
-public class MainHandlerFactory extends AbstractHandlerFactory<CommonRouterHandler> {
-
-
-    @Autowired
-    private List<CommonRouterHandler> commonRouterHandlerList; // todo "move to abstract class" mean move this to AbstractHandlerFactory?
+public class MainHandlerFactory<T extends CommonRouterHandler> extends AbstractRouterFactory<T> {
 
     @Override
-    protected List<CommonRouterHandler> getHandler() {
-        return commonRouterHandlerList;
+    public String getKey(Request<?> msg) {
+        return msg.getHeader().getType();
     }
 
     @Override
-    protected String getCommand(Request<?> msg) {
-        return msg.getHeader().getCommand();
+    public T getHandler(Request msg) {
+        String key = getKey(msg);
+        return getHandlerMap().get(key);
     }
 }

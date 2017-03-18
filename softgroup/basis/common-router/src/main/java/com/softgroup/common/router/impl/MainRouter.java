@@ -2,9 +2,7 @@ package com.softgroup.common.router.impl;
 
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
-import com.softgroup.common.router.api.AbstractMainRouter;
-import com.softgroup.common.router.api.CommonRouterHandler;
-import com.softgroup.common.router.api.IMainRouter;
+import com.softgroup.common.router.api.*;
 import com.softgroup.common.router.factory.MainHandlerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,7 +11,10 @@ import org.springframework.stereotype.Component;
  * Created by anton on 03.03.17.
  */
 @Component
-public class MainRouter extends AbstractMainRouter {
+public class MainRouter implements IMainRouter {
+
+    @Autowired
+    private MainHandlerFactory<CommonRouterHandler> mainHandlerFactory;
 
     @Override
     public String getRouteKey(Request<?> msg) {
