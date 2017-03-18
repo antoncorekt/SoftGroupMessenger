@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
+
 public abstract class AbstractRequestHandler<T extends RequestData, R extends ResponseData> implements RequestHandler {
 
 	@Autowired
@@ -25,6 +26,7 @@ public abstract class AbstractRequestHandler<T extends RequestData, R extends Re
 
 	@Override
 	public Response<R> handle(Request<?> msg) {
+
 		Request<T> request = new Request<>();
 		request.setHeader(msg.getHeader());
 
@@ -34,9 +36,7 @@ public abstract class AbstractRequestHandler<T extends RequestData, R extends Re
 		request.setData(t);
 
 
-		return handleWork(request);
+		return null;
 	}
-
-	public abstract Response<R> handleWork(Request<T> msg);
 
 }
