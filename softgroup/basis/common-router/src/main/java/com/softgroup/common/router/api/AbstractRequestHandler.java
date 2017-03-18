@@ -21,12 +21,13 @@ public abstract class AbstractRequestHandler<T extends RequestData, R extends Re
 		return null;
 	}
 
+	private final Class<T> cl = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+
 	@Override
 	public Response<R> handle(Request<?> msg) {
 		Request<T> request = new Request<>();
 		request.setHeader(msg.getHeader());
 
-		final Class<T> cl = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
 		T t = dataMapper.convert((Map<String, Object>) msg.getData(),cl);
 

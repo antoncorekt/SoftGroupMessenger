@@ -28,14 +28,8 @@ public class MainController {
     @Autowired
     private MainRouter mainRouter;
 
-    @Autowired
-    private DataMapper jacksonDataMapper;
-
     @RequestMapping(path = "/main")
     public Response<?> getMessage(@RequestBody Request<?> request){
-
-        // todo if request==null ?
-
         return mainRouter.handle(request);
     }
 
