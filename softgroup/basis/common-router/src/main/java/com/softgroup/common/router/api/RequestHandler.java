@@ -1,4 +1,6 @@
 package com.softgroup.common.router.api;
 
-public interface RequestHandler extends Handler {
+import com.softgroup.common.protocol.ResponseData;
+
+public interface RequestHandler<R extends ResponseData> extends Handler {
 }
