@@ -1,6 +1,6 @@
 package com.softgroup.common.token.impl.service;
 
-import com.softgroup.common.token.api.IToken;
+import com.softgroup.common.token.api.TokenInterface;
 import com.softgroup.common.token.api.TokenExceptions;
 import org.jose4j.jwe.ContentEncryptionAlgorithmIdentifiers;
 import org.jose4j.jwe.JsonWebEncryption;
@@ -8,7 +8,6 @@ import org.jose4j.jwe.KeyManagementAlgorithmIdentifiers;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.keys.AesKey;
 import org.jose4j.lang.ByteUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class ServiceToken implements IToken {
+public class ServiceToken implements TokenInterface {
 
     private AesKey key = new AesKey(ByteUtil.randomBytes(16));
 
