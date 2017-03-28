@@ -6,12 +6,10 @@
 
     <parent>
         <groupId>com.softgroup</groupId>
-        <artifactId>common-dao</artifactId>
+        <artifactId>common-token</artifactId>
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>common-dao-api</artifactId>
-
-
+    <artifactId>common-token-api</artifactId>
 
 </project>

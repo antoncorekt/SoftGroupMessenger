@@ -1,7 +1,8 @@
 package com.softgroup.common.token.impl.test;
 
 import com.softgroup.common.token.impl.configurations.TokenCfg;
-import com.softgroup.common.token.impl.handlerimpl.ServiceToken;
+
+import com.softgroup.common.token.impl.service.ServiceToken;
 import org.jose4j.jwt.JwtClaims;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,3 +40,4 @@ public class ServiceTokenTest {
     }
 
 }
+

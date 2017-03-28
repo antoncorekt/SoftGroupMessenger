@@ -6,7 +6,6 @@ import com.softgroup.common.protocol.*;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.IMainRouter;
 import com.softgroup.common.router.impl.MainRouter;
-import com.softgroup.common.token.impl.handlerimpl.ServiceToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -26,20 +25,10 @@ public class MainController {
     @Autowired
     private MainRouter mainRouter;
 
-    @Autowired
-    private ServiceToken serviceToken;
-
     @RequestMapping(path = "/main")
     public Response<?> getMessage(@RequestHeader final String token,
                                   @RequestBody final Request<?> request) {
-
         try{
-            if (!request.getHeader().getType().equals("authorizations")) {
-                RoutedData routedData = new RoutedData();
-                routedData.setDeviceID(serviceToken.getClaimsFromToken(token).getStringClaimValue("deviceID"));
-                routedData.setUserID(serviceToken.getClaimsFromToken(token).getStringClaimValue("userID"));
-                request.setRoutedData(routedData);
-            }
             return mainRouter.handle(request);
         }
         catch (Exception e){

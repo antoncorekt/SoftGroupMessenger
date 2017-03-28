@@ -10,6 +10,9 @@
         <version>0.0.1</version>
     </parent>
 
+    <groupId>com.softgroup</groupId>
     <artifactId>common-token-api</artifactId>
+    <version>0.0.1</version>
 
+    
 </project>

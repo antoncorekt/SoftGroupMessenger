@@ -6,22 +6,24 @@
 
     <parent>
         <groupId>com.softgroup</groupId>
-        <artifactId>common-token</artifactId>
+        <artifactId>basis</artifactId>
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>common-token-impl</artifactId>
+    <artifactId>common-token</artifactId>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>common-token-api</module>
+        <module>common-token-impl</module>
+    </modules>
 
     <dependencies>
         <dependency>
-            <groupId>com.softgroup</groupId>
-            <artifactId>common-token-api</artifactId>
-            <version>0.0.1</version>
+            <groupId>org.bitbucket.b_c</groupId>
+            <artifactId>jose4j</artifactId>
+            <version>0.5.5</version>
         </dependency>
     </dependencies>
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> only-tokenn
 </project>
