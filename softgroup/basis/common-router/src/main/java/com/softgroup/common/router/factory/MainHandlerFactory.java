@@ -15,9 +15,4 @@ public class MainHandlerFactory<T extends CommonRouterHandler> extends AbstractR
         return msg.getHeader().getType();
     }
 
-    @Override
-    public T getHandler(Request msg) {
-        String key = getKey(msg);
-        return getHandlerMap().get(key);
-    }
 }

@@ -15,11 +15,4 @@ public class RequestHandlerFactory<T extends RequestHandler> extends AbstractRou
         return msg.getHeader().getCommand();
     }
 
-    @Override
-    public T getHandler(Request msg) {
-        if (msg == null){
-            return null;
-        }
-        return getHandlerMap().get(getKey(msg));
-    }
 }

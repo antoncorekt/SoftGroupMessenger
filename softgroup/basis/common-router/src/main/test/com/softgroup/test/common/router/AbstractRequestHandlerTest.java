@@ -38,11 +38,6 @@ public class AbstractRequestHandlerTest {
 
 
     @Test
-    public void testHandle(){
-
-    }
-
-    @Test
     public void testHandleWork(){
 
         assertThat(abstractRequestHandler.handleWork(new Request()),nullValue());

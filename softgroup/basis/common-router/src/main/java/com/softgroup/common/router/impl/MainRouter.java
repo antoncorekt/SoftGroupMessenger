@@ -11,23 +11,11 @@ import org.springframework.stereotype.Component;
  * Created by anton on 03.03.17.
  */
 @Component
-public class MainRouter implements IMainRouter {
-
-    @Autowired
-    private MainHandlerFactory<CommonRouterHandler> mainHandlerFactory;
-
-    @Override
-    public String getRouteKey(Request<?> msg) {
-        return msg.getHeader().getCommand();
-    }
+public class MainRouter extends AbstractRouterHandler<CommonRouterHandler> {
 
     @Override
     public String getName() {
         return "mainRouter";
     }
 
-    @Override
-    public Response<?> handle(Request<?> msg) {
-        return mainHandlerFactory.getHandler(msg).handle(msg);
-    }
 }
