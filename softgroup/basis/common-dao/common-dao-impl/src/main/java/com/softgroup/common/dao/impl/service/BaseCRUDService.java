@@ -1,18 +1,16 @@
 package com.softgroup.common.dao.impl.service;
 
-import com.softgroup.common.dao.api.entities.IEntity;
-import com.softgroup.common.dao.api.repositories.IRepository;
-import com.softgroup.common.dao.api.service.IService;
+import com.softgroup.common.dao.api.entities.BaseEntity;
+import com.softgroup.common.dao.api.service.ServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 
 import java.io.Serializable;
-import java.util.Iterator;
 
 /**
  * Created by anton on 11.03.17.
  */
-public abstract class BaseCRUDService<T extends IEntity, V extends IRepository<T,K>, K extends Serializable> implements IService{
+public abstract class BaseCRUDService<T extends BaseEntity, V extends CrudRepository<T,String>> implements ServiceInterface {
 
     @Autowired
     private V repository;
@@ -25,7 +23,7 @@ public abstract class BaseCRUDService<T extends IEntity, V extends IRepository<T
         return repository.save(entities);
     }
 
-    public void delete(K id) {
+    public void delete(String id) {
         repository.delete(id);
     }
 
@@ -45,15 +43,15 @@ public abstract class BaseCRUDService<T extends IEntity, V extends IRepository<T
         return repository.findAll();
     }
 
-    public void findAll(Iterable<K> ids) {
+    public void findAll(Iterable<String> ids) {
         repository.findAll(ids);
     }
 
-    public T findOne(K id) {
+    public T findOne(String id) {
         return repository.findOne(id);
     }
 
-    public void exists(K id) {
+    public void exists(String id) {
         repository.exists(id);
     }
 

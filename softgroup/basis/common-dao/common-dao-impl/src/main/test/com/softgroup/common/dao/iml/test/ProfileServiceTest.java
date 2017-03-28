@@ -3,6 +3,7 @@ package com.softgroup.common.dao.iml.test;
 import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.impl.configurations.DaoImplAppCfg;
 import com.softgroup.common.dao.impl.service.ProfileService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class ProfileServiceTest {
     @Autowired
     private ProfileService profileService;
 
-    @PostConstruct
+    @Before
     public void init(){
         List<ProfileEntity> profileEntity = new ArrayList<>();
 
