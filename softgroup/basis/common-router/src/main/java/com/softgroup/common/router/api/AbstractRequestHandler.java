@@ -1,21 +1,12 @@
 package com.softgroup.common.router.api;
 
 
-import com.softgroup.common.datamapper.DataMapper;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.RequestData;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseData;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.lang.reflect.ParameterizedType;
-import java.util.Map;
-
-public abstract class AbstractRequestHandler<T extends RequestData, R extends ResponseData> implements RequestHandler {
-
-	@Autowired
-	private DataMapper dataMapper;
-
+public class AbstractRequestHandler<T extends RequestData, R extends ResponseData> implements RequestHandler {
 	@Override
 	public String getName() {
 		return null;
@@ -25,6 +16,7 @@ public abstract class AbstractRequestHandler<T extends RequestData, R extends Re
 
 	@Override
 	public Response<R> handle(Request<?> msg) {
+<<<<<<< HEAD
 		Request<T> request = new Request<>();
 		request.setHeader(msg.getHeader());
 
@@ -35,8 +27,9 @@ public abstract class AbstractRequestHandler<T extends RequestData, R extends Re
 
 
 		return handleWork(request);
+=======
+		return null;
+>>>>>>> only-dao
 	}
-
-	public abstract Response<R> handleWork(Request<T> msg);
 
 }

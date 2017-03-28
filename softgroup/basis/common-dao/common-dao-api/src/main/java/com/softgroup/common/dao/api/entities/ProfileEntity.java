@@ -13,12 +13,8 @@ import java.util.UUID;
  */
 @Entity
 @Table(name = "profiles")
-public class ProfileEntity implements IEntity {
+public class ProfileEntity extends BaseEntity {
     private static final long serialVersionUID = -4280254323092119941L;
-
-    @Id
-    @Column(name = "id", unique = true, nullable = false)
-    private String id;
 
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -37,33 +33,24 @@ public class ProfileEntity implements IEntity {
 
 
     public ProfileEntity() {
-        this.id = UUID.randomUUID().toString();
+        super(UUID.randomUUID().toString());
         createDateTime = updateDateTime = Instant.now().getEpochSecond();
         this.status = "not active";
     }
 
     public ProfileEntity(String name) {
-        this.id = UUID.randomUUID().toString();
+        super(UUID.randomUUID().toString());
         this.name = name;
         createDateTime = updateDateTime = Instant.now().getEpochSecond();
         this.status = "not active";
     }
 
     public ProfileEntity(String phoneNumber, String name) {
-        this.id = UUID.randomUUID().toString();
+        super(UUID.randomUUID().toString());
         this.phoneNumber = phoneNumber;
         this.name = name;
         createDateTime = updateDateTime = Instant.now().getEpochSecond();
         this.status = "not active";
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-        updateDateTime = Instant.now().getEpochSecond();
     }
 
     public String getPhoneNumber() {
@@ -119,7 +106,6 @@ public class ProfileEntity implements IEntity {
 
         ProfileEntity that = (ProfileEntity) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
         if (createDateTime != null ? !createDateTime.equals(that.createDateTime) : that.createDateTime != null)
             return false;
@@ -131,8 +117,7 @@ public class ProfileEntity implements IEntity {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
+        int result = phoneNumber != null ? phoneNumber.hashCode() : 0;
         result = 31 * result + (createDateTime != null ? createDateTime.hashCode() : 0);
         result = 31 * result + (updateDateTime != null ? updateDateTime.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
