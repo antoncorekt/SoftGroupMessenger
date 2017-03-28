@@ -14,12 +14,8 @@
         <module>common-datamapper</module>
         <module>common-router</module>
         <module>common-protocol</module>
-<<<<<<< HEAD
         <module>common-dao</module>
-=======
         <module>common-token</module>
-
->>>>>>> only-tokenn
     </modules>
 
     <dependencies>

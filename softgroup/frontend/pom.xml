@@ -12,7 +12,7 @@
     <packaging>pom</packaging>
 
     <modules>
-
+		<module>rest</module>
     </modules>
 
     <properties>
@@ -20,6 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>

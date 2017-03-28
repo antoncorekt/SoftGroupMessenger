@@ -5,10 +5,7 @@ import java.io.Serializable;
 public class RoutedAction<T extends Serializable> extends Action<T> {
 	private static final long serialVersionUID = -318012176965757271L;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> only-tokenn
+
 	private RoutedData routedData;
 
 	public RoutedAction() {
@@ -25,10 +22,5 @@ public class RoutedAction<T extends Serializable> extends Action<T> {
 	public void setRoutedData(RoutedData routedData) {
 		this.routedData = routedData;
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> only-dao
-=======
->>>>>>> only-tokenn
 }
