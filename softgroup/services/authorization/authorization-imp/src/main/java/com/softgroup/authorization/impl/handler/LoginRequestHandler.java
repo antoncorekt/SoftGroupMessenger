@@ -9,6 +9,8 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
+import com.softgroup.common.token.impl.service.ServiceToken;
+import org.jose4j.jwt.JwtClaims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +22,9 @@ import java.util.UUID;
 @Component
 public class LoginRequestHandler  extends AbstractRequestHandler<LoginRequest, LoginResponse> implements AuthorizationRequestHandler  {
 
+    @Autowired
+    private ServiceToken serviceToken;
+
     @Override
     public String getName() {
         return "login";
@@ -28,23 +33,28 @@ public class LoginRequestHandler  extends AbstractRequestHandler<LoginRequest, L
     @Override
     public Response<LoginResponse> handleWork(Request<LoginRequest> msg) {
 
-        LoginResponse data = new LoginResponse();
-        ResponseStatus status = new ResponseStatus(200,"ok");
+        try {
+            String deviceToken = msg.getData().getDeviceToken();
+            JwtClaims jwtClaims = serviceToken.getClaimsFromToken(deviceToken);
+            String userId = jwtClaims.getStringClaimValue("userID");
+            String deviceId = jwtClaims.getStringClaimValue("deviceID");
 
-        ActionHeader header = new ActionHeader(UUID.randomUUID().toString(),msg.getHeader().getUuid(),"authorization",
-                "login",
-                "ver");
+            // todo if time==device_service.find().time()
 
+            ActionHeader header = new ActionHeader(UUID.randomUUID().toString(),
+                    msg.getHeader().getUuid(),
+                    "login",
+                    "authorization",
+                    "HTTP/1.1");
 
-        data.setToken("token");
+            LoginResponse data = new LoginResponse(serviceToken.createSessionToken(userId, deviceId));
 
-        Response<LoginResponse> res = new Response<>();
+            return new Response<>(header, data, new ResponseStatus(200, "OK"));
+        }
+        catch (Exception e){
+            return new Response<>(null, null, new ResponseStatus(403, "Bad request"));
+        }
 
-        res.setStatus(status);
-        res.setData(data);
-        res.setHeader(header);
-
-        return res;
 
     }
 

@@ -4,52 +4,57 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
-
     <parent>
-        <artifactId>frontend</artifactId>
         <groupId>com.softgroup</groupId>
+        <artifactId>common-dao</artifactId>
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>rest</artifactId>
-
-
-    <!-- todo при war mvn clean install обваливается тест для rest пакета -->
+    <artifactId>common-dao-impl</artifactId>
 
     <dependencies>
+
         <dependency>
             <groupId>com.softgroup</groupId>
-            <artifactId>common-token-impl</artifactId>
+            <artifactId>common-dao-api</artifactId>
             <version>0.0.1</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>4.2.2.RELEASE</version>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>3.1.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-maven-plugin</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>3.4.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <propertyFile>src/main/resources/liquibase.properties</propertyFile>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
                 <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-    
+
 </project>

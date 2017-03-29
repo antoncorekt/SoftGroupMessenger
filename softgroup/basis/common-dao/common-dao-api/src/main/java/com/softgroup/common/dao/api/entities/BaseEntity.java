@@ -2,12 +2,13 @@ package com.softgroup.common.dao.api.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 /**
  * Created by anton on 15.03.17.
  */
-
+@MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
     @Id

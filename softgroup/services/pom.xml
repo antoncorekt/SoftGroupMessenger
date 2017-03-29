@@ -12,10 +12,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>authorization</module>
-<<<<<<< HEAD
-=======
-
->>>>>>> authBranch
 	</modules>
 
 

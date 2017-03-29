@@ -10,15 +10,34 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>authorization-impl</artifactId>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>
             <groupId>com.softgroup</groupId>
             <artifactId>authorization-api</artifactId>
-<<<<<<< HEAD
-=======
             <version>0.0.1</version>
->>>>>>> authBranch
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.softgroup</groupId>
+            <artifactId>common-token-impl</artifactId>
+            <version>0.0.1</version>
         </dependency>
 
     </dependencies>

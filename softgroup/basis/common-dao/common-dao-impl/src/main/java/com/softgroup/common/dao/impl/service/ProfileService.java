@@ -11,7 +11,7 @@ import java.util.List;
  * Created by anton on 11.03.17.
  */
 @Component
-public class ProfileService extends BaseCRUDService<ProfileEntity, ProfileRepository, String> {
+public class ProfileService extends BaseCRUDService<ProfileEntity, ProfileRepository> {
 
     public List<ProfileEntity> findByName(String name){
         return getRepository().findByName(name);

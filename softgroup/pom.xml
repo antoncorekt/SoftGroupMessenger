@@ -68,6 +68,21 @@
 				<version>${spring.core.version}</version>
 			</dependency>
 
+			<!-- SECURITY -->
+
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring.core.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring.core.version}</version>
+			</dependency>
+
+
 			<!-- TEST -->
 			<dependency>
 				<groupId>javax.servlet</groupId>
