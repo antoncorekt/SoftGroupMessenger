@@ -11,7 +11,9 @@ import org.springframework.context.annotation.Import;
  */
 
 @Configuration
-@ComponentScan(basePackages = "com.softgroup.frontend.rest", excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class))
-@Import(value = {TokenCfg.class})
+@ComponentScan(basePackages = "com.softgroup.frontend.rest")
+@Import(value = {TokenCfg.class,
+        SecurityConfig.class})
 public class RestConfig {
+
 }

@@ -63,36 +63,6 @@ public class LoginRequestHandlerTest {
 
         Response<RegisterResponse> response1 = registerRequestHandler.handleWork(request1);
 
-        Request<SmsConfirmRequest> request2 = new Request<>();
-
-        SmsConfirmRequest smsConfirmRequest = new SmsConfirmRequest();
-        smsConfirmRequest.setAuthCode(response1.getData().getAuthCode());
-        smsConfirmRequest.setRegistrationID(response1.getData().getRegistrationID());
-
-        request2.setHeader(new ActionHeader("uuid2", null, "sms_confirm", "authorization", "HTTP/1.1"));
-        request2.setData(smsConfirmRequest);
-
-        Response<SmsConfirmResponse> response2 = smsConfirmHandler.handleWork(request2);
-
-
-        Request<LoginRequest> request = new Request<>();
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setDeviceToken(response2.getData().getDeviceToken());
-        request.setHeader(new ActionHeader("uuid1", null, "login", "authorization", "HTTP/1.1"));
-        request.setData(loginRequest);
-
-
-
-        try {
-            Long l = serviceToken.getClaimsFromToken(response2.getData().getDeviceToken()).getIssuedAt().getValueInMillis();
-        }
-        catch (Exception e){
-            System.out.println("Token error");
-        }
-
-        Response<LoginResponse> response = loginRequestHandler.handleWork(request);
-
-        System.out.println(response);
 
     }
 }

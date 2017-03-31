@@ -6,13 +6,12 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by anton on 29.03.17.
+ * Created by anton on 31.03.17.
  */
 @Component
-public class TokenAuthManadger implements AuthenticationManager {
+public class TokenAuthManager implements AuthenticationManager {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        authentication.setAuthenticated(true);
         return authentication;
     }
 }

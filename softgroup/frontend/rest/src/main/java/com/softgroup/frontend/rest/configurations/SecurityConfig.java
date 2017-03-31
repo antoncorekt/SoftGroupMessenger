@@ -18,8 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
-@ComponentScan("com.softgroup.frontend.rest")
+@Import(value = {MyFilter.class})
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String PUBLIC_CONTROLLER_PATH = "/root/public/**";
