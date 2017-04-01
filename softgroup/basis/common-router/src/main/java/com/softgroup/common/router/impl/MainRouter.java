@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
  * Created by anton on 03.03.17.
  */
 @Component
-@Qualifier("main")
 public class MainRouter extends AbstractRouterHandler<CommonRouterHandler> {
 
     @Autowired

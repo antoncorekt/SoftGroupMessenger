@@ -21,9 +21,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.bitbucket.b_c</groupId>
-            <artifactId>jose4j</artifactId>
-            <version>0.5.5</version>
+            <groupId>com.softgroup</groupId>
+            <artifactId>common-protocol</artifactId>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
+
 </project>

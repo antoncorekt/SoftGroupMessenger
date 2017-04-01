@@ -12,6 +12,15 @@ public class RoutedData implements Serializable {
 
     private String userID;
 
+    public RoutedData(){
+
+    }
+
+    public RoutedData(String deviceID, String userID) {
+        this.deviceID = deviceID;
+        this.userID = userID;
+    }
+
     public String getDeviceID() {
         return deviceID;
     }

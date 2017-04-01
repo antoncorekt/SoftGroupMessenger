@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 public class PublicController {
 
     @Autowired
-    @Qualifier("main")
     private Handler mainRouter;
 
     @RequestMapping(path = "/public")
@@ -32,13 +31,20 @@ public class PublicController {
            // if (!request.getHeader().getType().equals("authorization")){
            //     return new Response<ResponseData>(null,null,new ResponseStatus(400,"Invalid param"));
            // }
+
+            System.out.println("wooork");
+
             return mainRouter.handle(request);
            // return new Response<ResponseData>(null,null,new ResponseStatus(400,"Bad request"));
         }
         catch (Exception e){
-            return new Response<ResponseData>(null,null,new ResponseStatus(400,"Bad request"));
+            return new Response<ResponseData>(null,null,new ResponseStatus(400,"Bad request " + e.toString()));
         }
     }
 
+    @RequestMapping(path = "/test")
+    public Response<?> test(){
+        return new Response<ResponseData>(null,null,new ResponseStatus(409,"LOlol"));
+    }
 
 }
