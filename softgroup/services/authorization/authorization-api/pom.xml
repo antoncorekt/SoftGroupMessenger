@@ -11,5 +11,12 @@
 
 	<artifactId>authorization-api</artifactId>
 
+	<dependencies>
+		<dependency>
+			<groupId>com.softgroup</groupId>
+			<artifactId>common-datamapper</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+	</dependencies>
 
 </project>

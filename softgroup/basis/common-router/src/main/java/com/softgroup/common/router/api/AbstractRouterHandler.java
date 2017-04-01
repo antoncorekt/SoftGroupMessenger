@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractRouterHandler<T extends Handler> implements RouterHandler {
 
-	@Autowired
-	private RouterFactoryInterface<T> routerFactoryInterface;
-
 	@Override
 	public String getRouteKey(Request<?> msg) {
 		return null;
@@ -18,12 +15,8 @@ public abstract class AbstractRouterHandler<T extends Handler> implements Router
 
 	@Override
 	public Response<?> handle(Request<?> msg) {
-
-		return routerFactoryInterface.getHandler(msg).handle(msg);
-
+		return getFactoryClass().getHandler(msg).handle(msg);
 	}
 
-	public RouterFactoryInterface<T> getRouterFactoryInterface() {
-		return routerFactoryInterface;
-	}
+	protected abstract RouterFactoryInterface<T> getFactoryClass();
 }

@@ -3,8 +3,14 @@
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+	<parent>
+		<groupId>com.softgroup</groupId>
+		<artifactId>softgroup</artifactId>
+		<version>0.0.1</version>
+	</parent>
+
 	<artifactId>service</artifactId>
-	<groupId>com.softgroup</groupId>
+
 	<version>0.0.1</version>
 	<modelVersion>4.0.0</modelVersion>
 
@@ -13,6 +19,14 @@
 	<modules>
 		<module>authorization</module>
 	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.softgroup</groupId>
+			<artifactId>common-datamapper</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+	</dependencies>
 
 
 </project>

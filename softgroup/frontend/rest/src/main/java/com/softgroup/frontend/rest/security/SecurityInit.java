@@ -1,4 +1,4 @@
-package com.softgroup.frontend.rest.configurations;
+package com.softgroup.frontend.rest.security;
 
 import com.softgroup.frontend.rest.security.MyFilter;
 import org.springframework.context.annotation.Bean;
@@ -8,7 +8,7 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
 /**
  * Created by anton on 19.03.17.
  */
-@Configuration
+//@Configuration
 public class SecurityInit extends AbstractSecurityWebApplicationInitializer {
 
     /*@Bean

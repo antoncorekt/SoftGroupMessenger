@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.softgroup.common.exceptions.MapperException;
 
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -114,5 +115,6 @@ public class JacksonDataMapper implements DataMapper {
 			throw new MapperException("Can`t create string", e);
 		}
 	}
+
 
 }

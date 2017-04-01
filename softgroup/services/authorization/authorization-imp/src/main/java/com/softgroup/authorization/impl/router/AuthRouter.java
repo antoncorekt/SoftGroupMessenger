@@ -7,6 +7,7 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.router.api.AbstractRouterHandler;
 import com.softgroup.common.router.api.Handler;
+import com.softgroup.common.router.router.RouterFactoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,12 +17,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthRouter extends AbstractRouterHandler<AuthorizationRequestHandler> {
 
+    @Autowired
+    private RouterFactoryInterface authorizationRequestHandlerFactory;
+
     public String getName() {
         return "authorizations";
     }
 
     @Override
-    public String getRouteKey(Request<?> msg) {
-        return getRouterFactoryInterface().getKey(msg);
+    protected RouterFactoryInterface<AuthorizationRequestHandler> getFactoryClass() {
+        return authorizationRequestHandlerFactory;
     }
 }

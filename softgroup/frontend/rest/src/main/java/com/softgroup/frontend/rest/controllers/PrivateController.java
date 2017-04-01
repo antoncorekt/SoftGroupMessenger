@@ -1,7 +1,9 @@
 package com.softgroup.frontend.rest.controllers;
 
 import com.softgroup.common.protocol.*;
+import com.softgroup.common.router.api.CommonRouterHandler;
 import com.softgroup.common.router.api.Handler;
+import com.softgroup.common.router.impl.MainRouter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,8 +24,8 @@ import javax.servlet.http.HttpSession;
         produces = MediaType.APPLICATION_JSON_VALUE)
 public class PrivateController {
 
-    @Autowired
-    private Handler mainRouter;
+  /*  @Autowired
+    private MainRouter mainRouter;
 
     @RequestMapping(path = "/private")
     public Response<?> getPrivateMessage(@RequestBody Request<?> request, HttpSession session){
@@ -33,5 +35,5 @@ public class PrivateController {
         } catch (Exception e) {
             return new Response<ResponseData>(null, null,new ResponseStatus(400, "Bad request"));
         }
-    }
+    }*/
 }

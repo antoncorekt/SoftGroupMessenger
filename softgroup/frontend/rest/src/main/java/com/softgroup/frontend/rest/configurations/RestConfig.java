@@ -1,6 +1,8 @@
 package com.softgroup.frontend.rest.configurations;
 
+import com.softgroup.common.router.configurations.RouterCfg;
 import com.softgroup.common.token.impl.configurations.TokenCfg;
+import com.softgroup.frontend.rest.security.SecurityInit;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -13,7 +15,7 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @ComponentScan(basePackages = "com.softgroup.frontend.rest")
 @Import(value = {TokenCfg.class,
-        SecurityConfig.class})
+        SecurityConfig.class, SecurityInit.class, RouterCfg.class})
 public class RestConfig {
 
 }

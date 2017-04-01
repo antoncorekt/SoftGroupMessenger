@@ -18,13 +18,5 @@
         <module>common-token</module>
     </modules>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-
-    </dependencies>
 
 </project>
