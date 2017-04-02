@@ -25,6 +25,7 @@
             <column name="status" type="varchar(20)" defaultValue="not active"/>
         </createTable>
     </changeSet>
+    
 
 
 

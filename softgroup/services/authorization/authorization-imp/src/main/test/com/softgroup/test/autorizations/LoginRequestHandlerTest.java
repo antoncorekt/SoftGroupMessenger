@@ -1,13 +1,16 @@
 package com.softgroup.test.autorizations;
 
 import com.softgroup.authorization.api.message.*;
+import com.softgroup.authorization.impl.config.AuthConfig;
 import com.softgroup.authorization.impl.handler.LoginRequestHandler;
 import com.softgroup.authorization.impl.handler.RegisterRequestHandler;
 import com.softgroup.authorization.impl.handler.SmsConfirmHandler;
 import com.softgroup.authorization.impl.session.ServiceSession;
+import com.softgroup.authorization.impl.session.SessionData;
 import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import com.softgroup.common.token.impl.configurations.TokenCfg;
 import com.softgroup.common.token.impl.service.ServiceToken;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,33 +21,30 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by anton on 29.03.17.
  */
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {AuthConfig.class, TokenCfg.class})
 public class LoginRequestHandlerTest {
 
-    @InjectMocks
+    @Autowired
     private RegisterRequestHandler registerRequestHandler;
 
-    @InjectMocks
-    private SmsConfirmHandler smsConfirmHandler;
-
-    @InjectMocks
+    @Autowired
     private LoginRequestHandler loginRequestHandler;
-
-    @InjectMocks
-    private ServiceToken serviceToken;
-
-    @Spy
-    private ServiceSession serviceSession = new ServiceSession();
 
     @Before
     public void init(){
-        registerRequestHandler = Mockito.mock(RegisterRequestHandler.class, Mockito.CALLS_REAL_METHODS);
+      //  registerRequestHandler = Mockito.mock(RegisterRequestHandler.class, Mockito.CALLS_REAL_METHODS);
+
     }
 
     @Test
@@ -63,6 +63,7 @@ public class LoginRequestHandlerTest {
 
         Response<RegisterResponse> response1 = registerRequestHandler.handleWork(request1);
 
+        System.out.println(response1.getHeader().getCommand());
 
     }
 }

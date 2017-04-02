@@ -22,7 +22,7 @@ public class AuthRouter extends AbstractRouterHandler<AuthorizationRequestHandle
     private RouterFactoryInterface authorizationRequestHandlerFactory;
 
     public String getName() {
-        return "authorizations";
+        return "authorization";
     }
 
     @Override

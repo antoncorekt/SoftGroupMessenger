@@ -29,12 +29,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(PUBLIC_CONTROLLER_PATH);
+        web.debug(true);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(myFilter, UsernamePasswordAuthenticationFilter.class);
+        http.csrf().disable().authorizeRequests().anyRequest().authenticated();
     }
 
 }

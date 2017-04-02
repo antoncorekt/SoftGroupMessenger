@@ -35,8 +35,8 @@ public class MyFilter extends UsernamePasswordAuthenticationFilter {
 
             System.out.println(httpRequest.getHeader("token"));
 
-           // RoutedData routedData = serviceToken.getRoutedData(httpRequest.getHeader("token"));
-            RoutedData routedData = new RoutedData("did","uid");
+            RoutedData routedData = serviceToken.getRoutedData(httpRequest.getHeader("token"));
+           // RoutedData routedData = new RoutedData("did","uid");
 
             System.out.println(routedData.getDeviceID());
             System.out.println(routedData.getUserID());

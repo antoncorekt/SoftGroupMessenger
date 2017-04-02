@@ -36,4 +36,12 @@ public class RoutedData implements Serializable {
     public void setUserID(String userID) {
         this.userID = userID;
     }
+
+    @Override
+    public String toString() {
+        return "RoutedData{" +
+                "deviceID='" + deviceID + '\'' +
+                ", userID='" + userID + '\'' +
+                '}';
+    }
 }

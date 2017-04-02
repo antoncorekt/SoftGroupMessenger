@@ -64,8 +64,8 @@ public class ServiceToken implements TokenInterface {
                 throw new TokenException("Error not session token");
             if (claims.getExpirationTime().getValueInMillis() < System.currentTimeMillis())
                 throw new TokenException("Token time error");
-            return new RoutedData(claims.getStringClaimValue("userID"),
-                    claims.getStringClaimValue("deviceID"));
+            return new RoutedData(claims.getStringClaimValue("deviceID"),
+                    claims.getStringClaimValue("userID"));
         } catch (Exception e) {
             throw new TokenException("Error token " + e.toString());
         }
