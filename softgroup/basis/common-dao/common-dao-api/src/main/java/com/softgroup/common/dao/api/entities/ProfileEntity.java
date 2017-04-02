@@ -1,7 +1,5 @@
 package com.softgroup.common.dao.api.entities;
 
-//import org.springframework.data.annotation.Id;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -35,20 +33,20 @@ public class ProfileEntity extends BaseEntity {
 
 
     public ProfileEntity() {
-        super(UUID.randomUUID().toString());
+
         createDateTime = updateDateTime = Instant.now().getEpochSecond();
         this.status = "not active";
     }
 
-    public ProfileEntity(String name) {
-        super(UUID.randomUUID().toString());
+    public ProfileEntity(String id,String name) {
+        super(id);
         this.name = name;
         createDateTime = updateDateTime = Instant.now().getEpochSecond();
         this.status = "not active";
     }
 
-    public ProfileEntity(String phoneNumber, String name) {
-        super(UUID.randomUUID().toString());
+    public ProfileEntity(String id,String phoneNumber, String name) {
+        super(id);
         this.phoneNumber = phoneNumber;
         this.name = name;
         createDateTime = updateDateTime = Instant.now().getEpochSecond();

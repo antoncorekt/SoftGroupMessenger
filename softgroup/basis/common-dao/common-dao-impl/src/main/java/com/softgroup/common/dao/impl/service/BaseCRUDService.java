@@ -1,16 +1,13 @@
 package com.softgroup.common.dao.impl.service;
 
 import com.softgroup.common.dao.api.entities.BaseEntity;
-import com.softgroup.common.dao.api.service.ServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
-
-import java.io.Serializable;
 
 /**
  * Created by anton on 11.03.17.
  */
-public abstract class BaseCRUDService<T extends BaseEntity, V extends CrudRepository<T,String>> implements ServiceInterface {
+public abstract class BaseCRUDService<T extends BaseEntity, V extends CrudRepository<T,String>> {
 
     @Autowired
     private V repository;

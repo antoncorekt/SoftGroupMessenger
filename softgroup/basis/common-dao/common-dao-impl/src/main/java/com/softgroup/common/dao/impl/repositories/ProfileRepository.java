@@ -2,10 +2,8 @@ package com.softgroup.common.dao.impl.repositories;
 
 
 import com.softgroup.common.dao.api.entities.ProfileEntity;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Component;
+import com.softgroup.common.dao.api.repository.BaseRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,8 +11,8 @@ import java.util.List;
 /**
  * Created by anton on 11.03.17.
  */
-@Component
-public interface ProfileRepository extends CrudRepository<ProfileEntity, String>{
+@Repository
+public interface ProfileRepository extends BaseRepository<ProfileEntity> {
 
     List<ProfileEntity> findByName(String s);
 
