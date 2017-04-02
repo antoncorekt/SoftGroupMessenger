@@ -25,7 +25,23 @@
             <column name="status" type="varchar(20)" defaultValue="not active"/>
         </createTable>
     </changeSet>
-    
+
+    <changeSet id="7" author="anton">
+        <createTable tableName="devices">
+            <column name="id" type="varchar(80)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="confirmation_time" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 
 
 

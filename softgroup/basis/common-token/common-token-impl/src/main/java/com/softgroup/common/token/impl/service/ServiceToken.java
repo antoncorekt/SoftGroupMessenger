@@ -21,7 +21,7 @@ public class ServiceToken implements TokenInterface {
     private AesKey key = new AesKey(ByteUtil.randomBytes(16));
 
     private static final String TOKEN_DEVICE = "deviceToken";
-    private static final String TOKEN_SESSION = "temporaryToken";
+    private static final String TOKEN_SESSION = "sessionToken";
 
     @Override
     public String createDeviceToken(String userId, String deviceId) throws TokenException {

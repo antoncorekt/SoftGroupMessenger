@@ -35,6 +35,7 @@ public class ServiceTokenTest {
 
                 assertThat(res.getClaimsMap().get("userID"), CoreMatchers.<Object>is("testID" ));
                 assertThat(res.getClaimsMap().get("deviceID"), CoreMatchers.<Object>is("testDevice" ));
+                assertThat(res.getClaimsMap().get("type"), is("deviceToken" ));
             }
             catch (TokenException e){
                 System.out.println(e.toString());
@@ -47,12 +48,11 @@ public class ServiceTokenTest {
             try {
                 String s = serviceToken.createSessionToken("testID", "testDevice");
 
-                 System.out.println(s);
-
                 JwtClaims res = serviceToken.getClaimsFromToken(s);
 
-                assertThat(res.getClaimsMap().get("userID"), CoreMatchers.<Object>is("testID" ));
-                assertThat(res.getClaimsMap().get("deviceID"), CoreMatchers.<Object>is("testDevice" ));
+                assertThat(res.getClaimsMap().get("userID"), is("testID" ));
+                assertThat(res.getClaimsMap().get("deviceID"), is("testDevice" ));
+                assertThat(res.getClaimsMap().get("type"), is("sessionToken" ));
             }
             catch (TokenException e){
                 System.out.println(e.toString());
@@ -65,12 +65,7 @@ public class ServiceTokenTest {
                 String deviceToken = serviceToken.createDeviceToken("DtestID", "DtestDevice");
                 String sessionToken = serviceToken.createSessionToken("StestID", "StestDevice");
 
-                //System.out.println(deviceToken);
-                //System.out.println(sessionToken);
-
                 RoutedData routedData = serviceToken.getRoutedData(sessionToken);
-
-               // System.out.println(routedData.toString());
 
                 assertThat(routedData.getDeviceID(), is("StestDevice"));
                 assertThat(routedData.getUserID(), is("StestID"));

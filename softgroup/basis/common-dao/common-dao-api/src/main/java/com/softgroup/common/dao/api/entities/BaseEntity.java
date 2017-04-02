@@ -10,10 +10,13 @@ import java.io.Serializable;
  */
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
+    private static final long serialVersionUID = -6048039879772600537L;
 
     @Id
     @Column(name = "id", unique = true, nullable = false)
     private String id;
+
+    public BaseEntity(){}
 
     public BaseEntity(String id) {
         this.id = id;

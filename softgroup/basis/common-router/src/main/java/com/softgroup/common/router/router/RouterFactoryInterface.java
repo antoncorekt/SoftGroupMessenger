@@ -8,7 +8,5 @@ import com.softgroup.common.router.api.Handler;
  */
 public interface RouterFactoryInterface<T extends Handler>  {
 
-   String getKey(Request<?> msg);
-
    T getHandler(Request msg);
 }
