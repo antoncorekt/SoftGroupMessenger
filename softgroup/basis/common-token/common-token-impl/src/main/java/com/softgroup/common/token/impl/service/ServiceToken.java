@@ -1,7 +1,8 @@
 package com.softgroup.common.token.impl.service;
 
+import com.softgroup.common.protocol.RoutedData;
 import com.softgroup.common.token.api.TokenInterface;
-import com.softgroup.common.token.api.TokenExceptions;
+import com.softgroup.common.token.api.TokenException;
 import org.jose4j.jwe.ContentEncryptionAlgorithmIdentifiers;
 import org.jose4j.jwe.JsonWebEncryption;
 import org.jose4j.jwe.KeyManagementAlgorithmIdentifiers;
@@ -20,10 +21,10 @@ public class ServiceToken implements TokenInterface {
     private AesKey key = new AesKey(ByteUtil.randomBytes(16));
 
     private static final String TOKEN_DEVICE = "deviceToken";
-    private static final String TOKEN_SESSION = "temporaryToken";
+    private static final String TOKEN_SESSION = "sessionToken";
 
     @Override
-    public String createDeviceToken(String userId, String deviceId) throws TokenExceptions {
+    public String createDeviceToken(String userId, String deviceId) throws TokenException {
 
         try {
             JwtClaims claims = new JwtClaims();
@@ -34,13 +35,13 @@ public class ServiceToken implements TokenInterface {
 
             return encrypt(claims);
         } catch (Exception e) {
-            throw new TokenExceptions("Error token " + e.toString());
+            throw new TokenException("Error token " + e.toString());
         }
 
     }
 
     @Override
-    public String createSessionToken(String userId, String deviceId) throws TokenExceptions {
+    public String createSessionToken(String userId, String deviceId) throws TokenException {
         try {
             JwtClaims claims = new JwtClaims();
             claims.setIssuedAtToNow();
@@ -51,18 +52,33 @@ public class ServiceToken implements TokenInterface {
 
             return encrypt(claims);
         } catch (Exception e) {
-            throw new TokenExceptions("Error token " + e.toString());
+            throw new TokenException("Error token " + e.toString());
+        }
+    }
+
+    @Override
+    public RoutedData getRoutedData(String token) throws TokenException {
+        try {
+            JwtClaims claims = getClaimsFromToken(token);
+            if (!claims.getStringClaimValue("type").equals(TOKEN_SESSION))
+                throw new TokenException("Error not session token");
+            if (claims.getExpirationTime().getValueInMillis() < System.currentTimeMillis())
+                throw new TokenException("Token time error");
+            return new RoutedData(claims.getStringClaimValue("deviceID"),
+                    claims.getStringClaimValue("userID"));
+        } catch (Exception e) {
+            throw new TokenException("Error token " + e.toString());
         }
     }
 
 
-    private String encrypt(JwtClaims claims) throws Exception{
+    private String encrypt(JwtClaims claims) throws TokenException{
         try {
             JsonWebEncryption encryption = getEncryption();
             encryption.setPayload(claims.toJson());
             return encryption.getCompactSerialization();
         } catch (Exception e) {
-            throw new TokenExceptions("Error token " + e.toString());
+            throw new TokenException("Error token " + e.toString());
         }
 
     }
@@ -75,13 +91,13 @@ public class ServiceToken implements TokenInterface {
         return encryption;
     }
 
-    public JwtClaims getClaimsFromToken(String token) throws Exception {
+    public JwtClaims getClaimsFromToken(String token) throws TokenException {
         try {
             JsonWebEncryption encryption = getEncryption();
             encryption.setCompactSerialization(token);
             return JwtClaims.parse(encryption.getPayload());
         } catch (Exception e) {
-            throw new TokenExceptions("Error token " + e.toString());
+            throw new TokenException("Error token " + e.toString());
         }
     }
 }

@@ -1,25 +1,28 @@
-package com.softgroup.common.token.impl.test;
-
-import com.softgroup.common.token.impl.configurations.TokenCfg;
+import com.softgroup.common.protocol.RoutedData;
+import com.softgroup.common.token.api.TokenException;
 import com.softgroup.common.token.impl.service.ServiceToken;
+import jdk.nashorn.internal.parser.Token;
+import org.hamcrest.CoreMatchers;
 import org.jose4j.jwt.JwtClaims;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.assertThat;
+
+
+
 import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
 
 /**
- * Created by anton on 15.03.17.
+ * Created by anton on 01.04.17.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TokenCfg.class})
+@RunWith(MockitoJUnitRunner.class)
 public class ServiceTokenTest {
 
-    @Autowired
+    @InjectMocks
     private ServiceToken serviceToken;
 
     @Test
@@ -30,12 +33,49 @@ public class ServiceTokenTest {
 
             JwtClaims res = serviceToken.getClaimsFromToken(s);
 
-            assertThat(res.getClaimsMap().get("userID"), is("testID" ));
-            assertThat(res.getClaimsMap().get("deviceID"), is("testDevice" ));
+            assertThat(res.getClaimsMap().get("userID"), CoreMatchers.<Object>is("testID" ));
+            assertThat(res.getClaimsMap().get("deviceID"), CoreMatchers.<Object>is("testDevice" ));
+            assertThat(res.getClaimsMap().get("type"), is("deviceToken" ));
         }
-        catch (Exception e){
+        catch (TokenException e){
             System.out.println(e.toString());
         }
     }
+
+    @Test
+    public void createSessionTokenTest(){
+
+        try {
+            String s = serviceToken.createSessionToken("testID", "testDevice");
+
+            JwtClaims res = serviceToken.getClaimsFromToken(s);
+
+            assertThat(res.getClaimsMap().get("userID"), is("testID" ));
+            assertThat(res.getClaimsMap().get("deviceID"), is("testDevice" ));
+            assertThat(res.getClaimsMap().get("type"), is("sessionToken" ));
+        }
+        catch (TokenException e){
+            System.out.println(e.toString());
+        }
+    }
+
+    @Test
+    public void getRoutedDataTest(){
+        try{
+            String deviceToken = serviceToken.createDeviceToken("DtestID", "DtestDevice");
+            String sessionToken = serviceToken.createSessionToken("StestID", "StestDevice");
+
+            RoutedData routedData = serviceToken.getRoutedData(sessionToken);
+
+            assertThat(routedData.getDeviceID(), is("StestDevice"));
+            assertThat(routedData.getUserID(), is("StestID"));
+
+        }
+        catch (TokenException e){
+            System.out.println(e.toString());
+        }
+    }
+
+
 
 }
