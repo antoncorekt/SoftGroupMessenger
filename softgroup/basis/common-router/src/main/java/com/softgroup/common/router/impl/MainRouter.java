@@ -4,6 +4,7 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.router.api.*;
 import com.softgroup.common.router.factory.MainHandlerFactory;
+import com.softgroup.common.router.router.RouterFactoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +14,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class MainRouter extends AbstractRouterHandler<CommonRouterHandler> {
 
+    @Autowired
+    private RouterFactoryInterface mainHandlerFactory;
+
     @Override
     public String getName() {
         return "mainRouter";
+    }
+
+
+    @Override
+    protected RouterFactoryInterface<CommonRouterHandler> getFactoryClass() {
+        return mainHandlerFactory;
     }
 
 }
