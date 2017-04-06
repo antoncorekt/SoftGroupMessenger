@@ -4,6 +4,8 @@ import com.softgroup.common.datamapper.DataMapper;
 import com.softgroup.common.datamapper.JacksonDataMapper;
 import com.softgroup.common.protocol.*;
 import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.utils.HttpStatus;
+import com.softgroup.common.protocol.utils.ResponseFactory;
 import com.softgroup.common.router.api.IMainRouter;
 import com.softgroup.common.router.impl.MainRouter;
 import com.softgroup.common.token.impl.handlerimpl.ServiceToken;
@@ -34,15 +36,9 @@ public class MainController {
             return mainRouter.handle(request);
         }
         catch (Exception e){
-            System.out.println("Error token or mainrouter" + e.toString());
-            return new Response<>(null, null, new ResponseStatus(400,"error"));
+
+            return ResponseFactory.createResponse(request, HttpStatus.BAD_REQUEST);
         }
-
-
     }
 
-    @RequestMapping(path = "/test")
-    public String testRest(){
-        return "Testing work!";
-    }
 }
