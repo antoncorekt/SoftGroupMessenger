@@ -1,5 +1,7 @@
 package com.softgroup.common.protocol;
 
+import com.softgroup.common.protocol.utils.HttpStatus;
+
 import java.io.Serializable;
 
 public class ResponseStatus implements Serializable {
@@ -11,6 +13,16 @@ public class ResponseStatus implements Serializable {
     public ResponseStatus(Integer code, String message) {
         this.code = code;
         this.message = message;
+    }
+
+    public ResponseStatus(HttpStatus httpStatus){
+        this.code = httpStatus.getCode();
+        this.message = httpStatus.getMsg();
+    }
+
+    public ResponseStatus(HttpStatus httpStatus, String userMsg){
+        this.code = httpStatus.getCode();
+        this.message = httpStatus.getMsg() + " " + userMsg;
     }
 
     public Integer getCode() {
