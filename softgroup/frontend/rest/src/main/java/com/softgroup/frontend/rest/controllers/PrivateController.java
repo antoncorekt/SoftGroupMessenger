@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
         produces = MediaType.APPLICATION_JSON_VALUE)
 public class PrivateController {
 
-  /*  @Autowired
+    @Autowired
     private MainRouter mainRouter;
 
     @RequestMapping(path = "/private")
@@ -35,5 +35,5 @@ public class PrivateController {
         } catch (Exception e) {
             return new Response<ResponseData>(null, null,new ResponseStatus(400, "Bad request"));
         }
-    }*/
+    }
 }

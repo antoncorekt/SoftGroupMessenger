@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class ServiceToken implements TokenInterface {
+public class TokenService implements TokenInterface {
 
     private AesKey key = new AesKey(ByteUtil.randomBytes(16));
 

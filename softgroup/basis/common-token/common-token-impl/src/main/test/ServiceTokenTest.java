@@ -1,16 +1,12 @@
 import com.softgroup.common.protocol.RoutedData;
 import com.softgroup.common.token.api.TokenException;
-import com.softgroup.common.token.impl.service.ServiceToken;
-import jdk.nashorn.internal.parser.Token;
+import com.softgroup.common.token.impl.service.TokenService;
 import org.hamcrest.CoreMatchers;
 import org.jose4j.jwt.JwtClaims;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-
-
 
 
 import static org.hamcrest.CoreMatchers.*;
@@ -23,7 +19,7 @@ import static org.hamcrest.MatcherAssert.*;
 public class ServiceTokenTest {
 
         @InjectMocks
-        private ServiceToken serviceToken;
+        private TokenService serviceToken;
 
         @Test
         public void createDeviceTokenTest(){

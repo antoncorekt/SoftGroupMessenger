@@ -4,35 +4,25 @@ import com.softgroup.authorization.api.message.*;
 import com.softgroup.authorization.impl.config.AuthConfig;
 import com.softgroup.authorization.impl.handler.LoginRequestHandler;
 import com.softgroup.authorization.impl.handler.RegisterRequestHandler;
-import com.softgroup.authorization.impl.handler.SmsConfirmHandler;
-import com.softgroup.authorization.impl.session.ServiceSession;
-import com.softgroup.authorization.impl.session.SessionData;
+import com.softgroup.common.dao.impl.configurations.DaoImplAppCfg;
 import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.token.impl.configurations.TokenCfg;
-import com.softgroup.common.token.impl.service.ServiceToken;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.*;
 
 /**
  * Created by anton on 29.03.17.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {AuthConfig.class, TokenCfg.class})
+@ContextConfiguration(classes = {AuthConfig.class, TokenCfg.class, DaoImplAppCfg.class})
 public class LoginRequestHandlerTest {
 
     @Autowired

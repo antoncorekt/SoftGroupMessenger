@@ -12,13 +12,13 @@ import java.util.concurrent.TimeUnit;
  */
 
 @Component
-public class ServiceSession {
+public class SessionService {
 
     private Map<String, SessionData> sessionMap;
 
     private static final Integer LIVE_SESSION = 1000;
 
-    public ServiceSession(){
+    public SessionService(){
         Cache<String, SessionData> sessionDataCache = CacheBuilder.newBuilder().expireAfterWrite(LIVE_SESSION, TimeUnit.SECONDS).build();
 
         sessionMap = sessionDataCache.asMap();
@@ -31,8 +31,8 @@ public class ServiceSession {
         return sessionData;
     }
 
-    public void endSession(String uuid){
-        sessionMap.remove(uuid);
+    public SessionData endSession(String uuid){
+        return sessionMap.remove(uuid);
     }
 
 }

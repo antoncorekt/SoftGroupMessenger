@@ -34,14 +34,13 @@ public class ProfileEntity extends BaseEntity {
 
     public ProfileEntity() {
 
-        createDateTime = updateDateTime = Instant.now().getEpochSecond();
         this.status = "not active";
     }
 
     public ProfileEntity(String id,String name) {
         super(id);
         this.name = name;
-        createDateTime = updateDateTime = Instant.now().getEpochSecond();
+
         this.status = "not active";
     }
 
@@ -49,7 +48,6 @@ public class ProfileEntity extends BaseEntity {
         super(id);
         this.phoneNumber = phoneNumber;
         this.name = name;
-        createDateTime = updateDateTime = Instant.now().getEpochSecond();
         this.status = "not active";
     }
 
@@ -77,7 +75,6 @@ public class ProfileEntity extends BaseEntity {
 
     public void setUpdateDateTime(Long updateDateTime) {
         this.updateDateTime = updateDateTime;
-        updateDateTime = Instant.now().getEpochSecond();
     }
 
     public String getName() {

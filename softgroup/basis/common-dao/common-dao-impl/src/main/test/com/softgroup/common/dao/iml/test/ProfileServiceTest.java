@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
@@ -32,8 +33,8 @@ public class ProfileServiceTest {
     public void init(){
         List<ProfileEntity> profileEntity = new ArrayList<>();
 
-        ProfileEntity igor = new ProfileEntity("Igor");
-        ProfileEntity mihalych = new ProfileEntity("+380998063701","Mihalych");
+        ProfileEntity igor = new ProfileEntity(UUID.randomUUID().toString(),"Gregor");
+        ProfileEntity mihalych = new ProfileEntity(UUID.randomUUID().toString(),"+380998063701","Mihalych");
 
         if (profileService.findByName(igor.getName()) != null)
             profileEntity.add(igor);

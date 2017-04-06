@@ -32,8 +32,6 @@ public class PublicController {
            //     return new Response<ResponseData>(null,null,new ResponseStatus(400,"Invalid param"));
            // }
 
-            System.out.println("wooork");
-
             return mainRouter.handle(request);
            // return new Response<ResponseData>(null,null,new ResponseStatus(400,"Bad request"));
         }

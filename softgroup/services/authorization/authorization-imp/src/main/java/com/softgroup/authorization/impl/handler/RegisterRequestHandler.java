@@ -3,7 +3,7 @@ package com.softgroup.authorization.impl.handler;
 import com.softgroup.authorization.api.message.RegisterRequest;
 import com.softgroup.authorization.api.message.RegisterResponse;
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
-import com.softgroup.authorization.impl.session.ServiceSession;
+import com.softgroup.authorization.impl.session.SessionService;
 import com.softgroup.authorization.impl.session.SessionData;
 import com.softgroup.authorization.impl.sms.SmsSender;
 import com.softgroup.common.protocol.ActionHeader;
@@ -23,7 +23,7 @@ import java.util.UUID;
 public class RegisterRequestHandler extends AbstractRequestHandler<RegisterRequest, RegisterResponse> implements AuthorizationRequestHandler {
 
     @Autowired
-    private ServiceSession serviceSession;
+    private SessionService serviceSession;
 
     @Autowired
     private SmsSender smsSender;

@@ -2,7 +2,7 @@ package com.softgroup.frontend.rest.security;
 
 
 import com.softgroup.common.protocol.RoutedData;
-import com.softgroup.common.token.impl.service.ServiceToken;
+import com.softgroup.common.token.impl.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,7 +26,7 @@ import java.io.IOException;
 public class MyFilter extends UsernamePasswordAuthenticationFilter {
 
     @Autowired
-    private ServiceToken serviceToken;
+    private TokenService serviceToken;
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
