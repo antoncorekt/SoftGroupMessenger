@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class SmsConfirmHandlerTest {
+
     @Test
     public void handleWork() throws Exception {
     }

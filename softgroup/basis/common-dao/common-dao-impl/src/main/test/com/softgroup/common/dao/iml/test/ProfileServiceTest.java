@@ -34,7 +34,7 @@ public class ProfileServiceTest {
         List<ProfileEntity> profileEntity = new ArrayList<>();
 
         ProfileEntity igor = new ProfileEntity(UUID.randomUUID().toString(),"Gregor");
-        ProfileEntity mihalych = new ProfileEntity(UUID.randomUUID().toString(),"+380998063701","Mihalych");
+        ProfileEntity mihalych = new ProfileEntity(UUID.randomUUID().toString(),"+380998063701");
 
         if (profileService.findByName(igor.getName()) != null)
             profileEntity.add(igor);

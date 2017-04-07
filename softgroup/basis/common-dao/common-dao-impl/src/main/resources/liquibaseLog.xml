@@ -43,7 +43,9 @@
         </createTable>
     </changeSet>
 
-
+    <changeSet id="8" author="anton">
+        <dropNotNullConstraint tableName="profiles" columnName="name"></dropNotNullConstraint>
+    </changeSet>
 
 
 </databaseChangeLog>

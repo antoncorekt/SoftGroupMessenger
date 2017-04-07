@@ -35,11 +35,11 @@ public class ResponseFactory {
                 .build();
     }
 
-    public static Response<?> createResponse(Request<?> msg,  ResponseStatus responseStatus){
+    public static Response<?> createResponse(Request<?> msg,  HttpStatus httpStatus){
 
         return new ResponseBuilder<>()
                 .withActionHeader(msg.getHeader())
-                .withResponseStatus(responseStatus)
+                .withResponseStatus(httpStatus)
                 .build();
     }
 

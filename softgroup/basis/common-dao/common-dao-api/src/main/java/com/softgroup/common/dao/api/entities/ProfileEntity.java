@@ -34,21 +34,11 @@ public class ProfileEntity extends BaseEntity {
 
     public ProfileEntity() {
 
-        this.status = "not active";
     }
 
-    public ProfileEntity(String id,String name) {
-        super(id);
-        this.name = name;
-
-        this.status = "not active";
-    }
-
-    public ProfileEntity(String id,String phoneNumber, String name) {
+    public ProfileEntity(String id,String phoneNumber) {
         super(id);
         this.phoneNumber = phoneNumber;
-        this.name = name;
-        this.status = "not active";
     }
 
     public String getPhoneNumber() {

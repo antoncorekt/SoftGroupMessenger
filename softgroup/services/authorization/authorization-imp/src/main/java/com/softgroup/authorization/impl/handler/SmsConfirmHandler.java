@@ -13,6 +13,8 @@ import com.softgroup.common.dao.impl.service.ProfileService;
 import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import com.softgroup.common.protocol.utils.HttpStatus;
+import com.softgroup.common.protocol.utils.ResponseFactory;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.common.token.impl.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,26 +55,47 @@ public class SmsConfirmHandler extends AbstractRequestHandler<SmsConfirmRequest,
             SessionData sessionData = sessionService.endSession(uuid);
 
             if (sessionData != null && sessionData.getAuthCode().equals(authCode)){
-                ProfileEntity profileEntity = profileService.save(new ProfileEntity(sessionData.getUuid(),
-                        sessionData.getPhoneNumber(),
-                        null));
+
+                ProfileEntity profileEntity = profileService.findByPhoneNumber(sessionData.getPhoneNumber());
+
+                if (profileEntity == null) {
+                    profileEntity = new ProfileEntity(UUID.randomUUID().toString(),sessionData.getPhoneNumber());
+
+                    profileEntity.setCreateDateTime(System.currentTimeMillis());
+                    profileEntity.setUpdateDateTime(profileEntity.getCreateDateTime());
+
+                    profileEntity = profileService.save( profileEntity);
+                }
 
                 String deviceToken = tokenService.createDeviceToken(sessionData.getUuid(),sessionData.getDeviceId());
 
+                DeviceEntity deviceEntity = deviceService.findByUserIDAndDeviceID(sessionData.getUuid(),sessionData.getDeviceId());
 
-                String id = UUID.randomUUID().toString();
-                deviceService.save(new DeviceEntity(id,sessionData.getUuid(),
-                        sessionData.getDeviceId(),
-                        tokenService.getClaimsFromToken(deviceToken).getIssuedAt().getValueInMillis()));
+                if (deviceEntity == null)
+                    deviceEntity = new DeviceEntity(UUID.randomUUID().toString(),
+                            sessionData.getUuid(),
+                            sessionData.getDeviceId(),
+                            null);
 
-                ActionHeader header = new ActionHeader(id,msg.getHeader().getUuid(),getName(),"autorization","HTTP/1.1");
+                deviceEntity.setConfirmaionTime(tokenService.getClaimsFromToken(deviceToken).getIssuedAt().getValueInMillis());
+                deviceService.save(deviceEntity);
 
+                ActionHeader header = new ActionHeader(msg.getHeader().getOriginUuid(),
+                        msg.getHeader().getUuid(),
+                        getName(),
+                        "autorization",
+                        "1.1");
+                SmsConfirmResponse smsConfirmResponse = new SmsConfirmResponse(deviceToken);
+
+                return (Response<SmsConfirmResponse>) ResponseFactory.createResponse(header,smsConfirmResponse,HttpStatus.OK);
+            }
+            else {
+                return (Response<SmsConfirmResponse>) ResponseFactory.createResponse(msg,HttpStatus.FORBIDDEN);
             }
 
         }
         catch (Exception e){
-
+            return (Response<SmsConfirmResponse>) ResponseFactory.createResponse(msg,HttpStatus.BAD_REQUEST);
         }
-        return null;
     }
 }
