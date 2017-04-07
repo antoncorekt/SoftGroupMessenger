@@ -72,6 +72,11 @@
 			<version>${spring.hibernate.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.194</version>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
