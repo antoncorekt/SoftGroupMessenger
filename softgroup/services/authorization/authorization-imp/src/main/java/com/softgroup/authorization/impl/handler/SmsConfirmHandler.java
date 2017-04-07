@@ -53,7 +53,9 @@ public class SmsConfirmHandler extends AbstractRequestHandler<SmsConfirmRequest,
             SessionData sessionData = sessionService.endSession(uuid);
 
             if (sessionData != null && sessionData.getAuthCode().equals(authCode)){
-                ProfileEntity profileEntity = profileService.save(new ProfileEntity(sessionData.getUuid(),sessionData.getPhoneNumber(),null));
+                ProfileEntity profileEntity = profileService.save(new ProfileEntity(sessionData.getUuid(),
+                        sessionData.getPhoneNumber(),
+                        null));
 
                 String deviceToken = tokenService.createDeviceToken(sessionData.getUuid(),sessionData.getDeviceId());
 

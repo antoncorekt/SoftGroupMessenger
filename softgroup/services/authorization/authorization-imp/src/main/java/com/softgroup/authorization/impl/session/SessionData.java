@@ -1,7 +1,13 @@
 package com.softgroup.authorization.impl.session;
 
+import org.omg.PortableInterceptor.INACTIVE;
+import sun.misc.BASE64Encoder;
+
 import javax.crypto.KeyGenerator;
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 /**
@@ -9,6 +15,8 @@ import java.util.UUID;
  */
 public class SessionData implements Serializable {
     private static final long serialVersionUID = -29781325728291255L;
+
+    private static final Integer COUNT_NUM_IN_CODE = 5;
 
     private String phoneNumber;
     private String deviceId;
@@ -33,7 +41,11 @@ public class SessionData implements Serializable {
 
     public String createAuthCode(){
 
-        return UUID.randomUUID().toString();
+        Double d = Math.random();
+
+        long num = Math.round(d*Math.pow(10,COUNT_NUM_IN_CODE));
+
+        return String.valueOf(num);
     }
 
     public static long getSerialVersionUID() {
@@ -94,5 +106,9 @@ public class SessionData implements Serializable {
 
     public void setTimeOut(int timeOut) {
         this.timeOut = timeOut;
+    }
+
+    public static Integer getCountNumInCode() {
+        return COUNT_NUM_IN_CODE;
     }
 }

@@ -35,4 +35,7 @@ public class SessionService {
         return sessionMap.remove(uuid);
     }
 
+    public static Integer getLiveSession() {
+        return LIVE_SESSION;
+    }
 }

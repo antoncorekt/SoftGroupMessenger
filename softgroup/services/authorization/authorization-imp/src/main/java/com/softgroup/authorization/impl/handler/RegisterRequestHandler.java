@@ -10,6 +10,8 @@ import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.utils.HttpStatus;
+import com.softgroup.common.protocol.utils.ResponseFactory;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -40,19 +42,18 @@ public class RegisterRequestHandler extends AbstractRequestHandler<RegisterReque
                 msg.getData().getDeviceID(),
                 msg.getData().getLocaleCode());
 
-        ActionHeader header = new ActionHeader(UUID.randomUUID().toString(),
+        ActionHeader header = new ActionHeader(msg.getHeader().getOriginUuid(),
                 msg.getHeader().getUuid(),
                 "register",
                 "authorization",
-                "HTTP/1.1");
+                "1.1");
 
         RegisterResponse data = new RegisterResponse(sessionData.getUuid(),sessionData.getTimeOut(),sessionData.getAuthCode());
-        ResponseStatus status = new ResponseStatus(200, "OK");
 
         smsSender.setAuthCode(sessionData.getAuthCode());
         smsSender.setNumber(sessionData.getPhoneNumber());
         smsSender.send();
 
-        return new Response<>(header, data, status);
+        return (Response<RegisterResponse>) ResponseFactory.createResponse(header,data, HttpStatus.OK);
     }
 }
