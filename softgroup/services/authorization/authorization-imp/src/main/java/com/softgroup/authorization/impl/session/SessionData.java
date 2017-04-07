@@ -27,8 +27,13 @@ public class SessionData implements Serializable {
         this.locale = locale;
         this.uuid = UUID.randomUUID().toString();
         this.creationTime = System.currentTimeMillis();
-        this.authCode = UUID.randomUUID().toString();
+        this.authCode = createAuthCode();
         this.timeOut = TIME_OUT;
+    }
+
+    public String createAuthCode(){
+
+        return UUID.randomUUID().toString();
     }
 
     public static long getSerialVersionUID() {

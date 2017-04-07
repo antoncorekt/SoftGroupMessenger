@@ -2,6 +2,8 @@ package com.softgroup.frontend.rest.controllers;
 
 import com.softgroup.common.protocol.*;
 import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.utils.HttpStatus;
+import com.softgroup.common.protocol.utils.ResponseFactory;
 import com.softgroup.common.router.api.CommonRouterHandler;
 import com.softgroup.common.router.impl.MainRouter;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -33,10 +35,9 @@ public class PublicController {
            // }
 
             return mainRouter.handle(request);
-           // return new Response<ResponseData>(null,null,new ResponseStatus(400,"Bad request"));
         }
         catch (Exception e){
-            return new Response<ResponseData>(null,null,new ResponseStatus(400,"Bad request " + e.toString()));
+            return ResponseFactory.createResponse(HttpStatus.BAD_REQUEST);
         }
     }
 

@@ -3,6 +3,8 @@ package com.softgroup.frontend.rest.security;
 
 import com.softgroup.common.protocol.RoutedData;
 import com.softgroup.common.token.impl.service.TokenService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +26,7 @@ import java.io.IOException;
 
 @Component
 public class MyFilter extends UsernamePasswordAuthenticationFilter {
+    private static Logger logger = LoggerFactory.getLogger(MyFilter.class);
 
     @Autowired
     private TokenService serviceToken;

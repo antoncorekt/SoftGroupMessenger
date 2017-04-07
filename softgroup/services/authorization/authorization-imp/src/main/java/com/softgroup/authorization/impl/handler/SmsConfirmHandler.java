@@ -71,7 +71,6 @@ public class SmsConfirmHandler extends AbstractRequestHandler<SmsConfirmRequest,
         catch (Exception e){
 
         }
-
         return null;
     }
 }

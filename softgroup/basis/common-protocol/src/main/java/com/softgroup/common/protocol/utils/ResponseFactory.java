@@ -7,6 +7,7 @@ import com.softgroup.common.protocol.ResponseStatus;
 
 /**
  * Created by anton on 06.04.17.
+ * @formatter:off
  */
 public class ResponseFactory {
 
@@ -33,6 +34,20 @@ public class ResponseFactory {
         return new ResponseBuilder<>()
                 .withActionHeader(msg.getHeader())
                 .withResponseStatus(responseStatus)
+                .build();
+    }
+
+     public static Response<?> createResponse(ResponseStatus responseStatus){
+
+        return new ResponseBuilder<>()
+                .withResponseStatus(responseStatus)
+                .build();
+        }
+
+    public static Response<?> createResponse(HttpStatus httpStatus){
+
+        return new ResponseBuilder<>()
+                .withResponseStatus(httpStatus)
                 .build();
     }
 }
