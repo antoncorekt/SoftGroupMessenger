@@ -41,4 +41,8 @@ public class ResponseStatus implements Serializable {
         this.message = message;
     }
 
+    public HttpStatus getHttpStatus(){
+        return HttpStatus.valueOf(getMessage());
+    }
+
 }

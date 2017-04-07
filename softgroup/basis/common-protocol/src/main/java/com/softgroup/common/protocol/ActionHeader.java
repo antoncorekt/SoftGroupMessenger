@@ -17,6 +17,14 @@ public class ActionHeader implements Serializable {
 
     }
 
+    public ActionHeader(ActionHeader actionHeader) {
+        this.uuid = actionHeader.getUuid();
+        this.originUuid = actionHeader.getOriginUuid();
+        this.command = actionHeader.getCommand();
+        this.type = actionHeader.getType();
+        this.version = actionHeader.getVersion();
+    }
+
     public ActionHeader(ActionHeaderBuilder headerBuilder) {
         this.uuid = headerBuilder.getUuid();
         this.originUuid = headerBuilder.getOriginUuid();

@@ -50,6 +50,7 @@ public class AuthorizationRequestHandlerFactoryTest {
 
     @Test
     public void test(){
+
         assertThat(authorizationRequestHandlerFactory.getKey(login),is("register"));
     }
 }
