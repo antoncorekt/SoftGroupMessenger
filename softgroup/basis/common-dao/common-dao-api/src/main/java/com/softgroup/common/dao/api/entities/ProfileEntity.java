@@ -31,26 +31,13 @@ public class ProfileEntity extends BaseEntity {
     @Column(name = "status")
     private String status;
 
-
     public ProfileEntity() {
 
-        createDateTime = updateDateTime = Instant.now().getEpochSecond();
-        this.status = "not active";
     }
 
-    public ProfileEntity(String id,String name) {
+    public ProfileEntity(String id,String phoneNumber) {
         super(id);
-        this.name = name;
-        createDateTime = updateDateTime = Instant.now().getEpochSecond();
-        this.status = "not active";
-    }
-
-    public ProfileEntity(String id,String phoneNumber, String name) {
-        super(id);
-        this.phoneNumber = phoneNumber;
-        this.name = name;
-        createDateTime = updateDateTime = Instant.now().getEpochSecond();
-        this.status = "not active";
+        this.name = phoneNumber;
     }
 
     public String getPhoneNumber() {
@@ -59,7 +46,6 @@ public class ProfileEntity extends BaseEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        updateDateTime = Instant.now().getEpochSecond();
     }
 
     public Long getCreateDateTime() {
@@ -68,7 +54,6 @@ public class ProfileEntity extends BaseEntity {
 
     public void setCreateDateTime(Long createDateTime) {
         this.createDateTime = createDateTime;
-        updateDateTime = Instant.now().getEpochSecond();
     }
 
     public Long getUpdateDateTime() {
@@ -77,7 +62,6 @@ public class ProfileEntity extends BaseEntity {
 
     public void setUpdateDateTime(Long updateDateTime) {
         this.updateDateTime = updateDateTime;
-        updateDateTime = Instant.now().getEpochSecond();
     }
 
     public String getName() {
@@ -86,7 +70,6 @@ public class ProfileEntity extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-        updateDateTime = Instant.now().getEpochSecond();
     }
 
     public String getStatus() {
@@ -95,7 +78,6 @@ public class ProfileEntity extends BaseEntity {
 
     public void setStatus(String status) {
         this.status = status;
-        updateDateTime = Instant.now().getEpochSecond();
     }
 
 
