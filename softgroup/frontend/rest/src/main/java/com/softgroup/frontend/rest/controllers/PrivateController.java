@@ -1,6 +1,8 @@
 package com.softgroup.frontend.rest.controllers;
 
 import com.softgroup.common.protocol.*;
+import com.softgroup.common.protocol.utils.HttpStatus;
+import com.softgroup.common.protocol.utils.ResponseFactory;
 import com.softgroup.common.router.api.CommonRouterHandler;
 import com.softgroup.common.router.api.Handler;
 import com.softgroup.common.router.impl.MainRouter;
@@ -33,7 +35,7 @@ public class PrivateController {
             request.setRoutedData((RoutedData)(SecurityContextHolder.getContext().getAuthentication()).getPrincipal());
             return mainRouter.handle(request);
         } catch (Exception e) {
-            return new Response<ResponseData>(null, null,new ResponseStatus(400, "Bad request"));
+            return ResponseFactory.createResponse(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

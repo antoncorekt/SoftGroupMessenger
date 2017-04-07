@@ -30,20 +30,15 @@ public class PublicController {
     @RequestMapping(path = "/public")
     public Response<?> getPublicMessage(@RequestBody Request<?> request){
         try{
-           // if (!request.getHeader().getType().equals("authorization")){
-           //     return new Response<ResponseData>(null,null,new ResponseStatus(400,"Invalid param"));
-           // }
+            if (!request.getHeader().getType().equals("authorization")){
+                return ResponseFactory.createResponse(HttpStatus.BAD_REQUEST);
+            }
 
             return mainRouter.handle(request);
         }
         catch (Exception e){
-            return ResponseFactory.createResponse(HttpStatus.BAD_REQUEST);
+            return ResponseFactory.createResponse(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-
-    @RequestMapping(path = "/test")
-    public Response<?> test(){
-        return new Response<ResponseData>(null,null,new ResponseStatus(409,"LOlol"));
     }
 
 }
