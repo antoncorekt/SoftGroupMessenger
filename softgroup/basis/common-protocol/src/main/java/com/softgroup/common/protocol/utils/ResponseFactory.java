@@ -23,12 +23,12 @@ public class ResponseFactory {
 
         return new ResponseBuilder<>()
                 .withActionHeader(msg.getHeader())
-                .withResponseStatus(HttpStatus.OK)
+                .withResponseStatus(Status.OK)
                 .withData(msg.getData())
                 .build();
     }
 
-    public static Response<?> createResponse(Request<?> msg,  HttpStatus httpStatus){
+    public static Response<?> createResponse(Request<?> msg,  Status httpStatus){
 
         return new ResponseBuilder<>()
                 .withActionHeader(msg.getHeader())

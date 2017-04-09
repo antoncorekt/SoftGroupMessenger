@@ -1,5 +1,7 @@
 package com.softgroup.common.token.api;
 
+import com.softgroup.common.protocol.RoutedData;
+
 /**
  * Created by anton on 18.03.17.
  */

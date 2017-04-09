@@ -3,7 +3,7 @@ package com.softgroup.common.protocol.utils;
 /**
  * Created by anton on 06.04.17.
  */
-public enum HttpStatus {
+public enum Status {
     OK(200, "OK"),
     BAD_REQUEST(400, "Bad request"),
     FORBIDDEN(403, "Forbidden"),
@@ -18,7 +18,7 @@ public enum HttpStatus {
 
     private final String msg;
 
-    HttpStatus(Integer code, String msg) {
+    Status(Integer code, String msg) {
         this.code = code;
         this.msg = msg ;
 
