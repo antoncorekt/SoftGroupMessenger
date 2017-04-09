@@ -17,8 +17,6 @@ public abstract class BaseEntity implements Serializable {
     @Column(name = "id", unique = true, nullable = false)
     private String id;
 
-    public BaseEntity(){}
-
     public BaseEntity(String id) {
         this.id = id;
     }

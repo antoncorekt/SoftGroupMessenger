@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
@@ -28,64 +29,31 @@ public class ProfileServiceTest {
     @Autowired
     private ProfileService profileService;
 
+    private ProfileEntity Igor=new ProfileEntity(),mihalych=new ProfileEntity();
     @Before
     public void init(){
         List<ProfileEntity> profileEntity = new ArrayList<>();
 
-        ProfileEntity igor = new ProfileEntity("Igor");
-        ProfileEntity mihalych = new ProfileEntity("+380998063701","Mihalych");
+        Igor = new ProfileEntity(UUID.randomUUID().toString(),"+545445454545");
+        mihalych = new ProfileEntity(UUID.randomUUID().toString(),"+380998063701");
 
-        if (profileService.findByName(igor.getName()) != null)
-            profileEntity.add(igor);
+        if (profileService.findByPhoneNumber(Igor.getPhoneNumber()) != null)
+            profileEntity.add(Igor);
 
-        if (profileService.findByName(mihalych.getName()) != null)
+        if (profileService.findByPhoneNumber(mihalych.getPhoneNumber()) != null)
             profileEntity.add(mihalych);
 
         profileService.save(profileEntity);
     }
 
     @Test
-    public void findByNameTest(){
-        List<ProfileEntity> res = profileService.findByName("Igor");
+    public void findByPhone(){
+        ProfileEntity igor = profileService.findByPhoneNumber(Igor.getPhoneNumber());
 
-        ProfileEntity igor = res.get(0);
 
-        assertThat(igor.getStatus(), is("not active"));
-        assertThat(igor.getCreateDateTime(), is(res.get(0).getUpdateDateTime()));
-        assertThat(igor.getName(), is("Igor"));
-        assertThat(igor.getPhoneNumber(), nullValue());
-
-        res = profileService.findByName("Mihalych");
-
-        ProfileEntity mihalych = res.get(0);
-
-        assertThat(mihalych.getStatus(), is("not active"));
-        assertThat(mihalych.getCreateDateTime(), is(mihalych.getUpdateDateTime()));
-        assertThat(mihalych.getName(), is("Mihalych"));
-        assertThat(mihalych.getPhoneNumber(), is("+380998063701"));
-
-        mihalych.setStatus("allowed");
-        profileService.save(mihalych);
-
-        res = profileService.findByName("Mihalych");
-
-        ProfileEntity new_michalych = res.get(0);
-        assertThat(mihalych.getStatus(), is("allowed"));
-      //  assertThat(mihalych.getCreateDateTime(), not(res.get(0).getUpdateDateTime())); // todo crash test
-        assertThat(mihalych.getName(), is("Mihalych"));
-        assertThat(mihalych.getPhoneNumber(), is("+380998063701"));
-
+        assertThat(igor.getPhoneNumber(), is("+545445454545"));
 
     }
 
-
-    @Test
-    public void findByStatusTest(){
-        List<ProfileEntity> res = profileService.findByStatus("allowed");
-
-        assertThat(res.get(0).getName(), is("Mihalych"));
-
-
-    }
 
 }

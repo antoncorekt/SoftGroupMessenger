@@ -12,12 +12,8 @@ import java.util.List;
 @Component
 public class ProfileService extends BaseCRUDService<ProfileEntity, ProfileRepository> {
 
-    public List<ProfileEntity> findByName(String name){
-        return getRepository().findByName(name);
-    }
-
-    public List<ProfileEntity> findByStatus(String status){
-        return getRepository().findByStatus(status);
+    public ProfileEntity findByPhoneNumber(String phoneNumber){
+        return getRepository().findByPhoneNumber(phoneNumber);
     }
 
 }

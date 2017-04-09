@@ -14,7 +14,5 @@ import java.util.List;
 @Repository
 public interface ProfileRepository extends BaseRepository<ProfileEntity> {
 
-    List<ProfileEntity> findByName(String s);
-
-    List<ProfileEntity> findByStatus(String s);
+    ProfileEntity findByPhoneNumber(String s);
 }
