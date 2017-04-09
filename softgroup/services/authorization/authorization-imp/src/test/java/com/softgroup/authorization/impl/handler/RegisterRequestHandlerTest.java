@@ -4,6 +4,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.softgroup.authorization.api.message.RegisterRequest;
 import com.softgroup.authorization.api.message.RegisterResponse;
+import com.softgroup.authorization.impl.handler.RegisterRequestHandler;
 import com.softgroup.authorization.impl.session.SessionData;
 import com.softgroup.authorization.impl.session.SessionService;
 import com.softgroup.authorization.impl.sms.SmsSender;

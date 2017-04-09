@@ -1,6 +1,7 @@
 package com.softgroup.authorization.impl.factory;
 
 import com.softgroup.authorization.api.message.LoginRequest;
+import com.softgroup.authorization.impl.factory.AuthorizationRequestHandlerFactory;
 import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.router.api.Handler;
