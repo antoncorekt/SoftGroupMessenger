@@ -21,8 +21,7 @@ public class DeviceEntity extends BaseEntity {
     @Column(name = "confirmation_time")
     private Long confirmaionTime;
 
-    public DeviceEntity() {
-    }
+    public DeviceEntity(){}
 
     public DeviceEntity(String id, String userID, String deviceID, Long confirmaionTime) {
         super(id);
