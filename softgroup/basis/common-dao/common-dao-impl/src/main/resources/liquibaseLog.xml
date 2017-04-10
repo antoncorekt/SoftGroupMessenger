@@ -27,8 +27,11 @@
             <column name="status" type="varchar(20)" defaultValue="not active"/>
         </createTable>
     </changeSet>
-    
 
+    <changeSet id="8" author="anton">
+        <dropNotNullConstraint tableName="profiles" columnName="name" columnDataType="varchar(80)"/>
+        <dropNotNullConstraint tableName="profiles" columnName="id" columnDataType="varchar(40)"/>
+    </changeSet>
 
 
 </databaseChangeLog>
