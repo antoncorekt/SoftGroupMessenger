@@ -17,7 +17,6 @@
     <modules>
         <module>common-dao-api</module>
         <module>common-dao-impl</module>
-
     </modules>
 
 

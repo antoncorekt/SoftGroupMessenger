@@ -1,7 +1,7 @@
 package com.softgroup.common.dao.impl.repositories;
 
-import com.softgroup.common.dao.api.entities.DeviceEntity;
-import com.softgroup.common.dao.api.repository.BaseRerository;
+import com.softgroup.common.dao.api.entities.*;
+import com.softgroup.common.dao.api.repository.*;
 import org.springframework.stereotype.Repository;
 
 /**

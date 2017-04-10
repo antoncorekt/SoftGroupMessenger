@@ -1,6 +1,6 @@
 package com.softgroup.common.dao.impl.service;
 
-import com.softgroup.common.dao.api.entities.BaseEntity;
+import com.softgroup.common.dao.api.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 

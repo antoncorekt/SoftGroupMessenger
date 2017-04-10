@@ -15,20 +15,15 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.softgroup</groupId>
-            <artifactId>common-dao-api</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>3.1.1</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-maven-plugin</artifactId>
             <version>3.4.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.softgroup</groupId>
+            <artifactId>common-dao-api</artifactId>
+            <version>0.0.1</version>
         </dependency>
 
 

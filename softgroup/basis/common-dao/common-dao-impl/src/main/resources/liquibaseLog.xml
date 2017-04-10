@@ -44,8 +44,9 @@
     </changeSet>
 
     <changeSet id="8" author="anton">
-        <dropNotNullConstraint tableName="profiles" columnName="name"></dropNotNullConstraint>
+        <dropNotNullConstraint tableName="profiles" columnName="name" columnDataType="varchar(80)"/>
     </changeSet>
+
 
 
 </databaseChangeLog>

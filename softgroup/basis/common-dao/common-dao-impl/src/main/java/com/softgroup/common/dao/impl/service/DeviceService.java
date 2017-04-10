@@ -12,5 +12,5 @@ public class DeviceService extends BaseCRUDService<DeviceEntity, DeviceRepositor
 
     public DeviceEntity findByUserIDAndDeviceID(String userID, String deviceID){
         return getRepository().findByUserIDAndDeviceID(userID,deviceID);
-    };
+    }
 }

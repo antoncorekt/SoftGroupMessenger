@@ -2,10 +2,8 @@ package com.softgroup.common.dao.api.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.Instant;
-import java.util.UUID;
 
 
 /**

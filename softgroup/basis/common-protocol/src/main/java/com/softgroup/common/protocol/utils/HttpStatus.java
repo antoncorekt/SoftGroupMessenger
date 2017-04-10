@@ -9,7 +9,7 @@ public enum HttpStatus {
     FORBIDDEN(403, "Forbidden"),
     NOT_FOUND(404, "Not found"),
     NOT_ACCEPTABLE(406, "Not acceptable"),
-    UNPROCESSABLE_ENTITY(422, "Unprocessable entity"),
+    UNPROCESSABLE_ENTITY(422, "Unprocessable entities"),
     TO_MANY_REQUESTS(429, "To many requests"),
     INTERNAL_SERVER_ERROR(500, "Internal server error"),
     NOT_IMPLEMENTED(501, "Not implemented");
