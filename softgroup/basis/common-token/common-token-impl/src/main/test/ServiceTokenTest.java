@@ -22,54 +22,36 @@ public class ServiceTokenTest {
         private TokenService serviceToken;
 
         @Test
-        public void createDeviceTokenTest(){
+        public void createDeviceTokenTest() throws TokenException{
+            String s = serviceToken.createDeviceToken("testID", "testDevice");
 
-            try {
-                String s = serviceToken.createDeviceToken("testID", "testDevice");
+            JwtClaims res = serviceToken.getClaimsFromToken(s);
 
-                JwtClaims res = serviceToken.getClaimsFromToken(s);
-
-                assertThat(res.getClaimsMap().get("userID"), CoreMatchers.<Object>is("testID" ));
-                assertThat(res.getClaimsMap().get("deviceID"), CoreMatchers.<Object>is("testDevice" ));
-                assertThat(res.getClaimsMap().get("type"), is("deviceToken" ));
-            }
-            catch (TokenException e){
-                System.out.println(e.toString());
-            }
+            assertThat(res.getClaimsMap().get("userID"), CoreMatchers.<Object>is("testID" ));
+            assertThat(res.getClaimsMap().get("deviceID"), CoreMatchers.<Object>is("testDevice" ));
+            assertThat(res.getClaimsMap().get("type"), is("deviceToken" ));
         }
 
         @Test
-        public void createSessionTokenTest(){
+        public void createSessionTokenTest() throws TokenException{
+            String s = serviceToken.createSessionToken("testID", "testDevice");
 
-            try {
-                String s = serviceToken.createSessionToken("testID", "testDevice");
+            JwtClaims res = serviceToken.getClaimsFromToken(s);
 
-                JwtClaims res = serviceToken.getClaimsFromToken(s);
-
-                assertThat(res.getClaimsMap().get("userID"), is("testID" ));
-                assertThat(res.getClaimsMap().get("deviceID"), is("testDevice" ));
-                assertThat(res.getClaimsMap().get("type"), is("sessionToken" ));
-            }
-            catch (TokenException e){
-                System.out.println(e.toString());
-            }
+            assertThat(res.getClaimsMap().get("userID"), is("testID" ));
+            assertThat(res.getClaimsMap().get("deviceID"), is("testDevice" ));
+            assertThat(res.getClaimsMap().get("type"), is("sessionToken" ));
         }
 
         @Test
-        public void getRoutedDataTest(){
-            try{
-                String deviceToken = serviceToken.createDeviceToken("DtestID", "DtestDevice");
-                String sessionToken = serviceToken.createSessionToken("StestID", "StestDevice");
+        public void getRoutedDataTest() throws TokenException{
+            String deviceToken = serviceToken.createDeviceToken("DtestID", "DtestDevice");
+            String sessionToken = serviceToken.createSessionToken("StestID", "StestDevice");
 
-                RoutedData routedData = serviceToken.getRoutedData(sessionToken);
+            RoutedData routedData = serviceToken.getRoutedData(sessionToken);
 
-                assertThat(routedData.getDeviceID(), is("StestDevice"));
-                assertThat(routedData.getUserID(), is("StestID"));
-
-            }
-            catch (TokenException e){
-                System.out.println(e.toString());
-            }
+            assertThat(routedData.getDeviceID(), is("StestDevice"));
+            assertThat(routedData.getUserID(), is("StestID"));
         }
 
 
