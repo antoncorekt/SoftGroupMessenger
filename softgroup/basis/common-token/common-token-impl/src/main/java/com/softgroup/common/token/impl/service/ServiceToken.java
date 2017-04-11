@@ -35,7 +35,7 @@ public class ServiceToken implements TokenInterface {
 
             return encrypt(claims);
         } catch (Exception e) {
-            throw new TokenException("Error token");
+            throw new TokenException(e.getLocalizedMessage());
         }
 
     }
@@ -52,7 +52,7 @@ public class ServiceToken implements TokenInterface {
 
             return encrypt(claims);
         } catch (Exception e) {
-            throw new TokenException("Error token");
+            throw new TokenException(e.getLocalizedMessage());
         }
     }
 
@@ -67,7 +67,7 @@ public class ServiceToken implements TokenInterface {
             return new RoutedData(claims.getStringClaimValue("deviceID"),
                     claims.getStringClaimValue("userID"));
         } catch (Exception e) {
-            throw new TokenException("Error token");
+            throw new TokenException(e.getLocalizedMessage());
         }
     }
 
@@ -97,7 +97,7 @@ public class ServiceToken implements TokenInterface {
             encryption.setCompactSerialization(token);
             return JwtClaims.parse(encryption.getPayload());
         } catch (Exception e) {
-            throw new TokenException("Error token");
+            throw new TokenException(e.getLocalizedMessage());
         }
     }
 }

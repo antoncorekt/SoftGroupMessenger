@@ -24,8 +24,7 @@ public class MainController {
     private MainRouter mainRouter;
 
     @RequestMapping(path = "/main")
-    public Response<?> getMessage(@RequestHeader final String token,
-                                  @RequestBody final Request<?> request) {
+    public Response<?> getMessage(@RequestBody final Request<?> request) {
 
         try{
             return mainRouter.handle(request);

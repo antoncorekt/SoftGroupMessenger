@@ -1,3 +1,5 @@
+package com.softgroup.common.token.impl.test;
+
 import com.softgroup.common.protocol.RoutedData;
 import com.softgroup.common.token.api.TokenException;
 import com.softgroup.common.token.impl.service.ServiceToken;
@@ -26,9 +28,8 @@ public class ServiceTokenTest {
     private ServiceToken serviceToken;
 
     @Test
-    public void createDeviceTokenTest(){
+    public void createDeviceTokenTest() throws TokenException{
 
-        try {
             String s = serviceToken.createDeviceToken("testID", "testDevice");
 
             JwtClaims res = serviceToken.getClaimsFromToken(s);
@@ -36,16 +37,12 @@ public class ServiceTokenTest {
             assertThat(res.getClaimsMap().get("userID"), CoreMatchers.<Object>is("testID" ));
             assertThat(res.getClaimsMap().get("deviceID"), CoreMatchers.<Object>is("testDevice" ));
             assertThat(res.getClaimsMap().get("type"), is("deviceToken" ));
-        }
-        catch (TokenException e){
-            System.out.println(e.toString());
-        }
     }
 
     @Test
-    public void createSessionTokenTest(){
+    public void createSessionTokenTest() throws TokenException{
 
-        try {
+
             String s = serviceToken.createSessionToken("testID", "testDevice");
 
             JwtClaims res = serviceToken.getClaimsFromToken(s);
@@ -53,15 +50,12 @@ public class ServiceTokenTest {
             assertThat(res.getClaimsMap().get("userID"), is("testID" ));
             assertThat(res.getClaimsMap().get("deviceID"), is("testDevice" ));
             assertThat(res.getClaimsMap().get("type"), is("sessionToken" ));
-        }
-        catch (TokenException e){
-            System.out.println(e.toString());
-        }
+
     }
 
     @Test
-    public void getRoutedDataTest(){
-        try{
+    public void getRoutedDataTest() throws TokenException{
+
             String deviceToken = serviceToken.createDeviceToken("DtestID", "DtestDevice");
             String sessionToken = serviceToken.createSessionToken("StestID", "StestDevice");
 
@@ -70,10 +64,7 @@ public class ServiceTokenTest {
             assertThat(routedData.getDeviceID(), is("StestDevice"));
             assertThat(routedData.getUserID(), is("StestID"));
 
-        }
-        catch (TokenException e){
-            System.out.println(e.toString());
-        }
+
     }
 
 
