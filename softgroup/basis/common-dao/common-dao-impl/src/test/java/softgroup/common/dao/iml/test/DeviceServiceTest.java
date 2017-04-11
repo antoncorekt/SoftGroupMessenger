@@ -3,6 +3,7 @@ package com.softgroup.common.dao.iml.test;
 import com.softgroup.common.dao.api.entities.DeviceEntity;
 import com.softgroup.common.dao.impl.configurations.DaoImplAppCfg;
 import com.softgroup.common.dao.impl.service.DeviceService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.UUID;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by anton on 03.04.17.
@@ -25,18 +30,35 @@ public class DeviceServiceTest {
     @Autowired
     private DeviceService deviceService;
 
-    @Test
-    public void test(){
+    private String userID, deviceID;
+    private long confTime;
+
+    @Before
+    public void init(){
+        userID = "userID";
+        deviceID = "deviceID_"+UUID.randomUUID().toString();
+        confTime = Math.round(Math.random()*100000);
 
         deviceService.save(new DeviceEntity(UUID.randomUUID().toString(),
-                "USERid50011",
-                "devID500",
-                14144999L));
+                userID,
+                deviceID,
+                confTime));
+    }
 
-        DeviceEntity deviceEntity = deviceService.findByUserIDAndDeviceID("USERid50011","devID500");
 
-        System.out.println(deviceEntity.getConfirmaionTime());
 
+    @Test
+    public void findByUserIDandDeviceIDtest(){
+        DeviceEntity deviceEntity = deviceService.findByUserIDAndDeviceID(userID,deviceID);
+
+        assertThat(deviceEntity.getUserID(),is(userID));
+        assertThat(deviceEntity.getDeviceID(),is(deviceID));
+        assertThat(deviceEntity.getConfirmaionTime(),is(confTime));
+
+
+        deviceEntity = deviceService.findByUserIDAndDeviceID(userID,"fakeDevice");
+
+        assertThat(deviceEntity,nullValue());
     }
 
 }
