@@ -24,7 +24,7 @@ public class ServiceToken implements TokenInterface {
     private static final String TOKEN_SESSION = "sessionToken";
 
     @Override
-    public String createDeviceToken(String userId, String deviceId) throws Exception {
+    public String createDeviceToken(String userId, String deviceId) throws TokenException {
 
         try {
             JwtClaims claims = new JwtClaims();
@@ -35,13 +35,13 @@ public class ServiceToken implements TokenInterface {
 
             return encrypt(claims);
         } catch (Exception e) {
-            throw new Exception("Error create device token", new TokenException());
+            throw new TokenException("Error create device token", new TokenException());
         }
 
     }
 
     @Override
-    public String createSessionToken(String userId, String deviceId) throws Exception {
+    public String createSessionToken(String userId, String deviceId) throws TokenException {
         try {
             JwtClaims claims = new JwtClaims();
             claims.setIssuedAtToNow();
@@ -52,22 +52,22 @@ public class ServiceToken implements TokenInterface {
 
             return encrypt(claims);
         } catch (Exception e) {
-            throw new Exception("Error session token", new TokenException());
+            throw new TokenException("Error session token", new TokenException());
         }
     }
 
     @Override
-    public RoutedData getRoutedData(String token) throws Exception {
+    public RoutedData getRoutedData(String token) throws TokenException {
         try {
             JwtClaims claims = getClaimsFromToken(token);
             if (!claims.getStringClaimValue("type").equals(TOKEN_SESSION))
-                throw new Exception("Not TOKEN_SESSION", new TokenException());
+                throw new TokenException("Not TOKEN_SESSION", new TokenException());
             if (claims.getExpirationTime().getValueInMillis() < System.currentTimeMillis())
-                throw new Exception("Token time error", new TokenException());
+                throw new TokenException("Token time error", new TokenException());
             return new RoutedData(claims.getStringClaimValue("deviceID"),
                     claims.getStringClaimValue("userID"));
         } catch (Exception e) {
-            throw new Exception("Error create routed data", new TokenException());
+            throw new TokenException("Error create routed data", new TokenException());
         }
     }
 
@@ -78,7 +78,7 @@ public class ServiceToken implements TokenInterface {
             encryption.setPayload(claims.toJson());
             return encryption.getCompactSerialization();
         } catch (Exception e) {
-            throw new Exception("Error encrypt token", new TokenException());
+            throw new TokenException("Error encrypt token", new TokenException());
         }
 
     }
@@ -91,13 +91,13 @@ public class ServiceToken implements TokenInterface {
         return encryption;
     }
 
-    public JwtClaims getClaimsFromToken(String token) throws Exception {
+    public JwtClaims getClaimsFromToken(String token) throws TokenException {
         try {
             JsonWebEncryption encryption = getEncryption();
             encryption.setCompactSerialization(token);
             return JwtClaims.parse(encryption.getPayload());
         } catch (Exception e) {
-            throw new Exception("Error get claims token", new TokenException());
+            throw new TokenException("Error get claims token", new TokenException());
         }
     }
 }

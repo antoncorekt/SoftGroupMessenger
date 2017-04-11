@@ -6,7 +6,11 @@ package com.softgroup.common.token.api;
 public class TokenException extends Exception {
     private static final long serialVersionUID = 7682810864914322512L;
 
-    public TokenException() {
+    public TokenException(String message, Throwable cause){
+        super(message,cause);
     }
 
+    public TokenException(){
+
+    }
 }
