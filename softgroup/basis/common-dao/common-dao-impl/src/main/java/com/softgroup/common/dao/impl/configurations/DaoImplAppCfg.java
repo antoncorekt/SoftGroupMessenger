@@ -1,12 +1,14 @@
 package com.softgroup.common.dao.impl.configurations;
 
+
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import liquibase.integration.spring.SpringLiquibase;
+import org.h2.jdbcx.JdbcDataSource;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.h2.jdbcx.JdbcDataSource;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.AbstractJpaVendorAdapter;
@@ -63,21 +65,23 @@ public class DaoImplAppCfg {
     @Bean
     @Profile("default")
     public DataSource dataSource(Environment env) {
-        MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setUrl(env.getProperty("db.url"));
-        dataSource.setUser(env.getProperty("db.username"));
-        dataSource.setPassword(env.getProperty("db.password"));
-        return dataSource;
+        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+        driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/Messenger");
+        driverManagerDataSource.setUsername("root");
+        driverManagerDataSource.setPassword("root");
+        return driverManagerDataSource;
     }
 
     @Bean
     @Profile("test")
     public DataSource dataSourceTest(Environment env) {
-        JdbcDataSource dataSource = new JdbcDataSource();
-        dataSource.setUrl(env.getProperty("db.url"));
-        dataSource.setUser(env.getProperty("db.username"));
-        dataSource.setPassword(env.getProperty("db.password"));
-        return dataSource;
+        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+        driverManagerDataSource.setDriverClassName("org.h2.Driver");
+        driverManagerDataSource.setUrl("jdbc:h2:~/test");
+        driverManagerDataSource.setUsername("root");
+        driverManagerDataSource.setPassword("root");
+        return driverManagerDataSource;
     }
 
 

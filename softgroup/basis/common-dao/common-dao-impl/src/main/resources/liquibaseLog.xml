@@ -47,6 +47,12 @@
         <dropNotNullConstraint tableName="profiles" columnName="name" columnDataType="varchar(80)"/>
     </changeSet>
 
+    <changeSet id="9" author="anton" >
+        <preConditions onFail="CONTINUE">
+            <not><sequenceExists sequenceName="SEQUENCE_NAME_SEQ" /></not>
+        </preConditions>
+        <createSequence sequenceName="SEQUENCE_NAME_SEQ"/>
+    </changeSet>
 
 
 </databaseChangeLog>
