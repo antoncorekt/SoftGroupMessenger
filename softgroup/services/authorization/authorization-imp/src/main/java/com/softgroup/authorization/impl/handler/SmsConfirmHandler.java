@@ -64,7 +64,7 @@ public class SmsConfirmHandler extends AbstractRequestHandler<SmsConfirmRequest,
                     profileEntity.setCreateDateTime(System.currentTimeMillis());
                     profileEntity.setUpdateDateTime(profileEntity.getCreateDateTime());
 
-                    profileEntity = profileService.save( profileEntity);
+                    profileService.save( profileEntity);
                 }
 
                 String deviceToken = tokenService.createDeviceToken(sessionData.getUuid(),sessionData.getDeviceId());
