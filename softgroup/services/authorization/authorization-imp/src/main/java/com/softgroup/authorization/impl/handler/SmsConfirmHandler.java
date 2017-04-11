@@ -16,6 +16,7 @@ import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.utils.HttpStatus;
 import com.softgroup.common.protocol.utils.ResponseFactory;
 import com.softgroup.common.router.api.AbstractRequestHandler;
+import com.softgroup.common.token.api.TokenException;
 import com.softgroup.common.token.impl.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -94,8 +95,11 @@ public class SmsConfirmHandler extends AbstractRequestHandler<SmsConfirmRequest,
             }
 
         }
-        catch (Exception e){
+        catch (TokenException e){
             return (Response<SmsConfirmResponse>) ResponseFactory.createResponse(msg,HttpStatus.BAD_REQUEST);
+        }
+        catch (Exception e){
+            return(Response<SmsConfirmResponse>) ResponseFactory.createResponse(msg,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
