@@ -52,24 +52,14 @@ public class DaoImplAppCfg {
         return new HibernateJpaVendorAdapter();
     }
 
-   /* @Bean
-    public DataSource dataSource(Environment env){
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/Messenger");
-        driverManagerDataSource.setUsername("root");
-        driverManagerDataSource.setPassword("root");
-        return driverManagerDataSource;
-    }*/
-
     @Bean
     @Profile("default")
     public DataSource dataSource(Environment env) {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
         driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/Messenger");
-        driverManagerDataSource.setUsername("root");
-        driverManagerDataSource.setPassword("root");
+        driverManagerDataSource.setUrl(env.getProperty("db.url"));
+        driverManagerDataSource.setUsername(env.getProperty("db.username"));
+        driverManagerDataSource.setPassword(env.getProperty("db.password"));
         return driverManagerDataSource;
     }
 
@@ -79,8 +69,8 @@ public class DaoImplAppCfg {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
         driverManagerDataSource.setDriverClassName("org.h2.Driver");
         driverManagerDataSource.setUrl("jdbc:h2:~/test");
-        driverManagerDataSource.setUsername("root");
-        driverManagerDataSource.setPassword("root");
+        driverManagerDataSource.setUsername(env.getProperty("db.username"));
+        driverManagerDataSource.setPassword(env.getProperty("db.password"));
         return driverManagerDataSource;
     }
 
