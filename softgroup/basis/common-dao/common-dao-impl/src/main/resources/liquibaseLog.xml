@@ -54,5 +54,10 @@
         <createSequence sequenceName="SEQUENCE_NAME_SEQ"/>
     </changeSet>
 
+    <changeSet id="10" author="anton">
+        <dropNotNullConstraint tableName="devices" columnName="confirmation_time" columnDataType="bigint"/>
+
+    </changeSet>
+
 
 </databaseChangeLog>

@@ -9,7 +9,7 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.RoutedData;
 import com.softgroup.common.protocol.utils.ActionHeaderBuilder;
-import com.softgroup.common.protocol.utils.HttpStatus;
+import com.softgroup.common.protocol.utils.Status;
 import com.softgroup.common.token.api.TokenException;
 import com.softgroup.common.token.impl.service.TokenService;
 import org.jose4j.jwt.JwtClaims;
@@ -102,7 +102,7 @@ public class LoginRequestHandlerTest {
 
         Response<LoginResponse> response = loginRequestHandler.handleWork(loginRequest);
 
-        assertThat(response.getStatus().getHttpStatus(),is(HttpStatus.OK));
+        assertThat(response.getStatus().getHttpStatus(),is(Status.OK));
 
         assertThat(response.getHeader().getCommand(), is("login"));
         assertThat(response.getHeader().getUuid(), is("origUuid"));
@@ -129,8 +129,8 @@ public class LoginRequestHandlerTest {
 
         Response<LoginResponse> response = loginRequestHandler.handleWork(loginRequest);
 
-        assertThat(response.getStatus().getMessage(), is(HttpStatus.BAD_REQUEST.getMsg()));
-        assertThat(response.getStatus().getCode(), is(HttpStatus.BAD_REQUEST.getCode()));
+        assertThat(response.getStatus().getMessage(), is(Status.BAD_REQUEST.getMsg()));
+        assertThat(response.getStatus().getCode(), is(Status.BAD_REQUEST.getCode()));
 
     }
 
@@ -152,8 +152,8 @@ public class LoginRequestHandlerTest {
 
         Response<LoginResponse> response = loginRequestHandler.handleWork(loginRequest);
 
-        assertThat(response.getStatus().getMessage(), is(HttpStatus.FORBIDDEN.getMsg()));
-        assertThat(response.getStatus().getCode(), is(HttpStatus.FORBIDDEN.getCode()));
+        assertThat(response.getStatus().getMessage(), is(Status.FORBIDDEN.getMsg()));
+        assertThat(response.getStatus().getCode(), is(Status.FORBIDDEN.getCode()));
     }
 
 }

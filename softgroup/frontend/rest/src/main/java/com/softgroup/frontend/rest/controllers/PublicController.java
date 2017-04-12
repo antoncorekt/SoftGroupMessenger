@@ -2,11 +2,8 @@ package com.softgroup.frontend.rest.controllers;
 
 import com.softgroup.common.protocol.*;
 import com.softgroup.common.protocol.ResponseStatus;
-import com.softgroup.common.protocol.utils.HttpStatus;
+import com.softgroup.common.protocol.utils.Status;
 import com.softgroup.common.protocol.utils.ResponseFactory;
-import com.softgroup.common.router.api.CommonRouterHandler;
-import com.softgroup.common.router.impl.MainRouter;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.softgroup.common.router.api.Handler;
@@ -37,7 +34,7 @@ public class PublicController {
             return mainRouter.handle(request);
         }
         catch (Exception e){
-            return ResponseFactory.createResponse(HttpStatus.BAD_REQUEST);
+            return ResponseFactory.createResponse(Status.BAD_REQUEST);
         }
     }
 

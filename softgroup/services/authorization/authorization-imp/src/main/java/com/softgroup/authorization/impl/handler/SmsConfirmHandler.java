@@ -13,7 +13,7 @@ import com.softgroup.common.dao.impl.service.ProfileService;
 import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.utils.HttpStatus;
+import com.softgroup.common.protocol.utils.Status;
 import com.softgroup.common.protocol.utils.ResponseFactory;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.common.token.api.TokenException;
@@ -88,18 +88,18 @@ public class SmsConfirmHandler extends AbstractRequestHandler<SmsConfirmRequest,
                         "1.1");
                 SmsConfirmResponse smsConfirmResponse = new SmsConfirmResponse(deviceToken);
 
-                return (Response<SmsConfirmResponse>) ResponseFactory.createResponse(header,smsConfirmResponse,HttpStatus.OK);
+                return (Response<SmsConfirmResponse>) ResponseFactory.createResponse(header,smsConfirmResponse, Status.OK);
             }
             else {
-                return (Response<SmsConfirmResponse>) ResponseFactory.createResponse(msg,HttpStatus.FORBIDDEN);
+                return (Response<SmsConfirmResponse>) ResponseFactory.createResponse(msg, Status.FORBIDDEN);
             }
 
         }
         catch (TokenException e){
-            return (Response<SmsConfirmResponse>) ResponseFactory.createResponse(msg,HttpStatus.BAD_REQUEST);
+            return (Response<SmsConfirmResponse>) ResponseFactory.createResponse(msg, Status.BAD_REQUEST);
         }
         catch (Exception e){
-            return(Response<SmsConfirmResponse>) ResponseFactory.createResponse(msg,HttpStatus.INTERNAL_SERVER_ERROR);
+            return(Response<SmsConfirmResponse>) ResponseFactory.createResponse(msg, Status.INTERNAL_SERVER_ERROR);
         }
     }
 }

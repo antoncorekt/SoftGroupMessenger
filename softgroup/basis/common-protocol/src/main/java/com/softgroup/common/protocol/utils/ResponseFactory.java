@@ -17,7 +17,7 @@ public class ResponseFactory {
                 .build();
     }
 
-    public static <T extends ResponseData> Response<?> createResponse(ActionHeader header, T data, HttpStatus httpStatus){
+    public static <T extends ResponseData> Response<?> createResponse(ActionHeader header, T data, Status httpStatus){
 
         return new ResponseBuilder<>()
                 .withActionHeader(header)
@@ -30,12 +30,12 @@ public class ResponseFactory {
 
         return new ResponseBuilder<>()
                 .withActionHeader(msg.getHeader())
-                .withResponseStatus(HttpStatus.OK)
+                .withResponseStatus(Status.OK)
                 .withData(msg.getData())
                 .build();
     }
 
-    public static Response<?> createResponse(Request<?> msg,  HttpStatus httpStatus){
+    public static Response<?> createResponse(Request<?> msg,  Status httpStatus){
 
         return new ResponseBuilder<>()
                 .withActionHeader(msg.getHeader())
@@ -50,7 +50,7 @@ public class ResponseFactory {
                 .build();
         }
 
-    public static Response<?> createResponse(HttpStatus httpStatus){
+    public static Response<?> createResponse(Status httpStatus){
 
         return new ResponseBuilder<>()
                 .withResponseStatus(httpStatus)

@@ -35,7 +35,7 @@ public class TokenService implements TokenInterface {
 
             return encrypt(claims);
         } catch (Exception e) {
-            throw new TokenException("Error token " + e.toString());
+            throw new TokenException("Error create device token ", e);
         }
 
     }
@@ -52,7 +52,7 @@ public class TokenService implements TokenInterface {
 
             return encrypt(claims);
         } catch (Exception e) {
-            throw new TokenException("Error token " + e.toString());
+            throw new TokenException("Error create device token ", e);
         }
     }
 
@@ -61,13 +61,13 @@ public class TokenService implements TokenInterface {
         try {
             JwtClaims claims = getClaimsFromToken(token);
             if (!claims.getStringClaimValue("type").equals(TOKEN_SESSION))
-                throw new TokenException("Error not session token");
+                throw new TokenException("Not session token ", null);
             if (claims.getExpirationTime().getValueInMillis() < System.currentTimeMillis())
-                throw new TokenException("Token time error");
+                throw new TokenException("Time error", null);
             return new RoutedData(claims.getStringClaimValue("deviceID"),
                     claims.getStringClaimValue("userID"));
         } catch (Exception e) {
-            throw new TokenException("Error token " + e.toString());
+            throw new TokenException("Error create routed data ", e);
         }
     }
 
@@ -78,7 +78,7 @@ public class TokenService implements TokenInterface {
             encryption.setPayload(claims.toJson());
             return encryption.getCompactSerialization();
         } catch (Exception e) {
-            throw new TokenException("Error token " + e.toString());
+            throw new TokenException("Encrypt error", e);
         }
 
     }
@@ -97,7 +97,7 @@ public class TokenService implements TokenInterface {
             encryption.setCompactSerialization(token);
             return JwtClaims.parse(encryption.getPayload());
         } catch (Exception e) {
-            throw new TokenException("Error token " + e.toString());
+            throw new TokenException("Error token ", e);
         }
     }
 }

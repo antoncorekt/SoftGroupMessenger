@@ -8,7 +8,7 @@ import com.softgroup.common.dao.impl.service.DeviceService;
 import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.utils.HttpStatus;
+import com.softgroup.common.protocol.utils.Status;
 import com.softgroup.common.protocol.utils.ResponseFactory;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.common.token.api.TokenException;
@@ -57,17 +57,17 @@ public class LoginRequestHandler  extends AbstractRequestHandler<LoginRequest, L
 
                 LoginResponse data = new LoginResponse(serviceToken.createSessionToken(userId, deviceId));
 
-                return (Response<LoginResponse>)ResponseFactory.createResponse(header,data,HttpStatus.OK);
+                return (Response<LoginResponse>)ResponseFactory.createResponse(header,data, Status.OK);
             }
             else{
-                return (Response<LoginResponse>) ResponseFactory.createResponse(HttpStatus.FORBIDDEN);
+                return (Response<LoginResponse>) ResponseFactory.createResponse(Status.FORBIDDEN);
             }
         }
         catch (TokenException e){
-          return (Response<LoginResponse>) ResponseFactory.createResponse(HttpStatus.BAD_REQUEST);
+          return (Response<LoginResponse>) ResponseFactory.createResponse(Status.BAD_REQUEST);
         }
         catch (Exception e){
-            return (Response<LoginResponse>) ResponseFactory.createResponse(HttpStatus.INTERNAL_SERVER_ERROR);
+            return (Response<LoginResponse>) ResponseFactory.createResponse(Status.INTERNAL_SERVER_ERROR);
         }
 
 

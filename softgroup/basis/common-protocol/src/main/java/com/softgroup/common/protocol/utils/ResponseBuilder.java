@@ -21,12 +21,12 @@ public class ResponseBuilder<T extends Serializable> {
         return this;
     }
 
-    public ResponseBuilder withResponseStatus(HttpStatus httpStatus){
+    public ResponseBuilder withResponseStatus(Status httpStatus){
         this.responseStatus = new ResponseStatus(httpStatus);
         return this;
     }
 
-    public ResponseBuilder withResponseStatus(HttpStatus httpStatus, String userMsg){
+    public ResponseBuilder withResponseStatus(Status httpStatus, String userMsg){
         this.responseStatus = new ResponseStatus(httpStatus, userMsg);
         return this;
     }

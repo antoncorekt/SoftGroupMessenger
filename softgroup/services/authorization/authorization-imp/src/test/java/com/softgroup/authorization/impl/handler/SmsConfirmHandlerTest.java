@@ -12,7 +12,7 @@ import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.RoutedData;
-import com.softgroup.common.protocol.utils.HttpStatus;
+import com.softgroup.common.protocol.utils.Status;
 import com.softgroup.common.token.impl.service.TokenService;
 import org.junit.Before;
 import org.junit.Test;
@@ -109,7 +109,7 @@ public class SmsConfirmHandlerTest {
 
         Response<SmsConfirmResponse> response = smsConfirmHandler.handleWork(request);
 
-        assertThat(response.getStatus().getHttpStatus(), is(HttpStatus.OK));
+        assertThat(response.getStatus().getHttpStatus(), is(Status.OK));
 
         assertThat(response.getHeader().getCommand(), is("sms_confirm"));
         assertThat(response.getHeader().getUuid(), is("originUuid"));

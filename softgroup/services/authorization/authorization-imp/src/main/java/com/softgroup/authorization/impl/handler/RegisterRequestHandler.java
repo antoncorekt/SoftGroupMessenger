@@ -9,14 +9,11 @@ import com.softgroup.authorization.impl.sms.SmsSender;
 import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.ResponseStatus;
-import com.softgroup.common.protocol.utils.HttpStatus;
+import com.softgroup.common.protocol.utils.Status;
 import com.softgroup.common.protocol.utils.ResponseFactory;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 /**
  * Created by anton on 29.03.17.
@@ -54,6 +51,6 @@ public class RegisterRequestHandler extends AbstractRequestHandler<RegisterReque
         smsSender.setNumber(sessionData.getPhoneNumber());
         smsSender.send();
 
-        return (Response<RegisterResponse>) ResponseFactory.createResponse(header,data, HttpStatus.OK);
+        return (Response<RegisterResponse>) ResponseFactory.createResponse(header,data, Status.OK);
     }
 }
