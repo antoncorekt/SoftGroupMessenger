@@ -10,7 +10,7 @@ public class TokenException extends Exception {
         super(message,cause);
     }
 
-    public TokenException(){
-
+    public TokenException(String message){
+        super(message);
     }
 }

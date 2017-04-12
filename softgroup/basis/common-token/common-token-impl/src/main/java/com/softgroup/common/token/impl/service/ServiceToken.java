@@ -35,7 +35,7 @@ public class ServiceToken implements TokenInterface {
 
             return encrypt(claims);
         } catch (Exception e) {
-            throw new TokenException("Error create device token", new TokenException());
+            throw new TokenException("Error create device token", e);
         }
 
     }
@@ -52,7 +52,7 @@ public class ServiceToken implements TokenInterface {
 
             return encrypt(claims);
         } catch (Exception e) {
-            throw new TokenException("Error session token", new TokenException());
+            throw new TokenException("Error session token", e);
         }
     }
 
@@ -61,13 +61,13 @@ public class ServiceToken implements TokenInterface {
         try {
             JwtClaims claims = getClaimsFromToken(token);
             if (!claims.getStringClaimValue("type").equals(TOKEN_SESSION))
-                throw new TokenException("Not TOKEN_SESSION", new TokenException());
+                throw new TokenException("Not TOKEN_SESSION");
             if (claims.getExpirationTime().getValueInMillis() < System.currentTimeMillis())
-                throw new TokenException("Token time error", new TokenException());
+                throw new TokenException("Token time error");
             return new RoutedData(claims.getStringClaimValue("deviceID"),
                     claims.getStringClaimValue("userID"));
         } catch (Exception e) {
-            throw new TokenException("Error create routed data", new TokenException());
+            throw new TokenException("Error create routed data", e);
         }
     }
 
@@ -78,7 +78,7 @@ public class ServiceToken implements TokenInterface {
             encryption.setPayload(claims.toJson());
             return encryption.getCompactSerialization();
         } catch (Exception e) {
-            throw new TokenException("Error encrypt token", new TokenException());
+            throw new TokenException("Error encrypt token", e);
         }
 
     }
@@ -97,7 +97,7 @@ public class ServiceToken implements TokenInterface {
             encryption.setCompactSerialization(token);
             return JwtClaims.parse(encryption.getPayload());
         } catch (Exception e) {
-            throw new TokenException("Error get claims token", new TokenException());
+            throw new TokenException("Error get claims token", e);
         }
     }
 }
