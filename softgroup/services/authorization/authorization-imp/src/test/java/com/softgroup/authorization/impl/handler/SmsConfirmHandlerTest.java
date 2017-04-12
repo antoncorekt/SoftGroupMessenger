@@ -12,6 +12,7 @@ import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.RoutedData;
+import com.softgroup.common.protocol.utils.HttpStatus;
 import com.softgroup.common.token.impl.service.TokenService;
 import org.junit.Before;
 import org.junit.Test;
@@ -65,7 +66,7 @@ public class SmsConfirmHandlerTest {
     }
 
     @Test
-    public void handleWork() throws Exception {
+    public void handleWorkNormal() throws Exception {
 
         Request<SmsConfirmRequest> request = new Request<>();
 
@@ -108,7 +109,14 @@ public class SmsConfirmHandlerTest {
 
         Response<SmsConfirmResponse> response = smsConfirmHandler.handleWork(request);
 
-        System.out.println(response.getStatus().getMessage());
+        assertThat(response.getStatus().getHttpStatus(), is(HttpStatus.OK));
+
+        assertThat(response.getHeader().getCommand(), is("sms_confirm"));
+        assertThat(response.getHeader().getUuid(), is("originUuid"));
+        assertThat(response.getHeader().getOriginUuid(), is("uuid"));
+        assertThat(response.getHeader().getType(), is("authorization"));
+
+        assertThat(response.getData().getDeviceToken(), is(deviceToken));
 
     }
 

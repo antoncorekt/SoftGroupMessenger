@@ -84,7 +84,7 @@ public class SmsConfirmHandler extends AbstractRequestHandler<SmsConfirmRequest,
                 ActionHeader header = new ActionHeader(msg.getHeader().getOriginUuid(),
                         msg.getHeader().getUuid(),
                         getName(),
-                        "autorization",
+                        "authorization",
                         "1.1");
                 SmsConfirmResponse smsConfirmResponse = new SmsConfirmResponse(deviceToken);
 
