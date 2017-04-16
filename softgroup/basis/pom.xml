@@ -10,6 +10,10 @@
     <artifactId>basis</artifactId>
     <packaging>pom</packaging>
     <modules>
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
         <module>common-exceptions</module>
         <module>common-datamapper</module>
         <module>common-router</module>

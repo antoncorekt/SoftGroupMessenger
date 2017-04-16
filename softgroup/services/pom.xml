@@ -12,8 +12,14 @@
 	<artifactId>authorization</artifactId>
 	<packaging>pom</packaging>
 	<modules>
+<<<<<<< HEAD
 		<module>authorization-api</module>
 		<module>authorization-imp</module>
+=======
+
+		<module>authorization</module>
+
+>>>>>>> master
 	</modules>
 
 	<dependencyManagement>
