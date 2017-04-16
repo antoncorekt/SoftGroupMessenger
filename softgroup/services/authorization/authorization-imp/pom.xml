@@ -15,6 +15,10 @@
         <dependency>
             <groupId>com.softgroup</groupId>
             <artifactId>authorization-api</artifactId>
+<<<<<<< HEAD
+=======
+            <version>0.0.1</version>
+>>>>>>> master
         </dependency>
 
     </dependencies>

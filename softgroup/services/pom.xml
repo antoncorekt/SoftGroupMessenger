@@ -11,7 +11,18 @@
 
 	<packaging>pom</packaging>
 	<modules>
+<<<<<<< HEAD
 		<module>authorization</module>
+=======
+<<<<<<< HEAD
+		<module>authorization-api</module>
+		<module>authorization-imp</module>
+=======
+
+		<module>authorization</module>
+
+>>>>>>> master
+>>>>>>> master
 	</modules>
 
 
