@@ -10,21 +10,14 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>common-token</artifactId>
-
     <packaging>pom</packaging>
 
+    <artifactId>common-dao</artifactId>
+
     <modules>
-        <module>common-token-api</module>
-        <module>common-token-impl</module>
+        <module>common-dao-api</module>
+        <module>common-dao-impl</module>
     </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.softgroup</groupId>
-            <artifactId>common-protocol</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-    </dependencies>
 
 </project>

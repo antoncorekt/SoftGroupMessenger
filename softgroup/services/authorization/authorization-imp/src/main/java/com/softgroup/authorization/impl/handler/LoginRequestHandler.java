@@ -29,14 +29,13 @@ public class LoginRequestHandler  extends AbstractRequestHandler<LoginRequest, L
     public Response<LoginResponse> handleWork(Request<LoginRequest> msg) {
 
         LoginResponse data = new LoginResponse();
-        ResponseStatus status = new ResponseStatus();;
+        ResponseStatus status = new ResponseStatus(200, "ok");
 
         ActionHeader header = new ActionHeader(UUID.randomUUID().toString(),msg.getHeader().getUuid(),"authorization",
                 "login",
                 "ver");
 
-        status.setCode(200);
-        status.setMessage("ok");
+
 
         data.setToken("token");
 
