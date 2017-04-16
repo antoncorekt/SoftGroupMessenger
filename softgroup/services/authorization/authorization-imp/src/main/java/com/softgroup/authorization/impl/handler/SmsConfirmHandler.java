@@ -86,7 +86,7 @@ public class SmsConfirmHandler extends AbstractRequestHandler<SmsConfirmRequest,
                         getName(),
                         "autorization",
                         "1.1");
-                //SmsConfirmResponse smsConfirmResponse = new SmsConfirmResponse(deviceToken);
+                SmsConfirmResponse smsConfirmResponse = new SmsConfirmResponse(deviceToken);
 
                 return (Response<SmsConfirmResponse>) ResponseFactory.createResponse(header,smsConfirmResponse,Status.OK);
             }

@@ -1,12 +1,10 @@
 package com.softgroup.common.protocol.utils;
 
-import com.softgroup.common.protocol.Request;
-import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.ResponseData;
-import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.*;
 
 /**
  * Created by anton on 06.04.17.
+ * @formatter:off
  */
 public class ResponseFactory {
 
@@ -15,7 +13,16 @@ public class ResponseFactory {
         return new ResponseBuilder<>()
                 .withActionHeader(msg.getHeader())
                 .withResponseStatus(responseStatus)
-                .withData(msg.getData())
+                .withData(data)
+                .build();
+    }
+
+    public static <T extends ResponseData> Response<?> createResponse(ActionHeader header, T data, Status httpStatus){
+
+        return new ResponseBuilder<>()
+                .withActionHeader(header)
+                .withResponseStatus(httpStatus)
+                .withData(data)
                 .build();
     }
 
@@ -32,6 +39,20 @@ public class ResponseFactory {
 
         return new ResponseBuilder<>()
                 .withActionHeader(msg.getHeader())
+                .withResponseStatus(httpStatus)
+                .build();
+    }
+
+    public static Response<?> createResponse(ResponseStatus responseStatus){
+
+        return new ResponseBuilder<>()
+                .withResponseStatus(responseStatus)
+                .build();
+    }
+
+    public static Response<?> createResponse(Status httpStatus){
+
+        return new ResponseBuilder<>()
                 .withResponseStatus(httpStatus)
                 .build();
     }
