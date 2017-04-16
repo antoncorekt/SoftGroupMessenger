@@ -1,5 +1,6 @@
 package com.softgroup.frontend.rest.controllers;
 
+
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.router.api.Handler;
@@ -21,11 +22,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class MainController {
 
     @Autowired
-    private Handler mainRouter;
+    private MainRouter mainRouter;
 
     @RequestMapping(path = "/main")
-    public Response<?> getMessage(@RequestBody Request<?> request){
-        return mainRouter.handle(request);
+    public Response<?> getMessage(@RequestBody final Request<?> request) {
+
+        try{
+            return mainRouter.handle(request);
+        }
+        catch (Exception e){
+
+            return ResponseFactory.createResponse(request, Status.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

@@ -1,5 +1,7 @@
 package com.softgroup.common.protocol;
 
+import com.softgroup.common.protocol.utils.ActionHeaderBuilder;
+
 import java.io.Serializable;
 
 public class ActionHeader implements Serializable {
@@ -14,6 +16,16 @@ public class ActionHeader implements Serializable {
     public ActionHeader() {
 
     }
+
+
+    public ActionHeader(ActionHeaderBuilder headerBuilder) {
+        this.uuid = headerBuilder.getUuid();
+        this.originUuid = headerBuilder.getOriginUuid();
+        this.command = headerBuilder.getCommand();
+        this.type = headerBuilder.getType();
+        this.version = headerBuilder.getVersion();
+    }
+
 
     public ActionHeader(String uuid, String originUuid, String command, String type, String version) {
         this.uuid = uuid;

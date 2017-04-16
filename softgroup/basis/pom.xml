@@ -10,17 +10,19 @@
     <artifactId>basis</artifactId>
     <packaging>pom</packaging>
     <modules>
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
         <module>common-exceptions</module>
         <module>common-datamapper</module>
         <module>common-router</module>
         <module>common-protocol</module>
+        <module>common-token</module>
 
     </modules>
 
     <dependencies>
-
-
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -28,18 +30,5 @@
         </dependency>
 
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
