@@ -2,16 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<artifactId>services</artifactId>
-		<groupId>com.softgroup</groupId>
-		<version>0.0.1</version>
-	</parent>
+
+	<artifactId>service</artifactId>
+	<groupId>com.softgroup</groupId>
+	<version>0.0.1</version>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>authorization</artifactId>
+
 	<packaging>pom</packaging>
 	<modules>
+<<<<<<< HEAD
+		<module>authorization</module>
+=======
 <<<<<<< HEAD
 		<module>authorization-api</module>
 		<module>authorization-imp</module>
@@ -20,16 +22,8 @@
 		<module>authorization</module>
 
 >>>>>>> master
+>>>>>>> master
 	</modules>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>com.softgroup</groupId>
-				<artifactId>authorization-api</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 </project>
