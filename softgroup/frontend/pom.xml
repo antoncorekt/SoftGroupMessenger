@@ -28,6 +28,11 @@
             <artifactId>common-router</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.softgroup</groupId>
+            <artifactId>common-token-impl</artifactId>
+            <version>0.0.1</version>
+        </dependency>
 
     </dependencies>
 
