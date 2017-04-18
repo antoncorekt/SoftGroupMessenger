@@ -1,10 +1,7 @@
 package com.softgroup.authorization.impl.handler;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import com.softgroup.authorization.api.message.RegisterRequest;
 import com.softgroup.authorization.api.message.RegisterResponse;
-import com.softgroup.authorization.impl.handler.RegisterRequestHandler;
 import com.softgroup.authorization.impl.session.SessionData;
 import com.softgroup.authorization.impl.session.SessionService;
 import com.softgroup.authorization.impl.sms.SmsSender;
@@ -14,11 +11,9 @@ import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.RoutedData;
 import com.softgroup.common.protocol.utils.Status;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.MockSettings;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
